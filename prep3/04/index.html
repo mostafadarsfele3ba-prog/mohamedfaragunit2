@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>درس اسم المكان - الصف الثالث الإعدادي</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14532d;      
+            --primary-light: #16a34a; 
+            --secondary: #059669;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #65a30d;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #eef6f0;
+            background-image: radial-gradient(#c9dccd 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* --- الهيدر الرئيسي --- */
+        .header-main {
+            background: linear-gradient(135deg, #052e16, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #dcfce7;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(1.4rem, 5.5vw, 2.6rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #4ade80, #15803d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #ecfdf5; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* --- الأزرار --- */
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        /* --- الشاشة الرئيسية --- */
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(34, 197, 94, 0.25); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #14532d; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.4rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 1rem; color: #64748b; font-weight: 600;}
+
+        /* --- شاشة اللعب --- */
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #16a34a; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 800;
+            color: #14532d;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #059669;
+            line-height: 1.6;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* MCQ Style */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1.1rem, 3.5vw, 1.4rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        /* True/False Style */
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        /* Bubbles Style */
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #052e16, #14532d);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #16a34a; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(224,231,255,0.9));
+            color: #14532d;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        /* Shooting Style */
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23e0fbfc" width="100%" height="100%"/><circle fill="%23bae6fd" cx="20%" cy="30%" r="50"/><circle fill="%23bae6fd" cx="80%" cy="60%" r="70"/><circle fill="%23bae6fd" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #16a34a; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.95rem, 3vw, 1.15rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #f0fdf4; }
+
+        /* Genius Challenge Style */
+        .genius-wrap {
+            background: linear-gradient(135deg, #052e16, #14532d, #15803d);
+            border-radius: 16px; padding: 20px; margin-top: 10px;
+            border: 4px solid #4ade80; box-shadow: inset 0 0 25px rgba(0,0,0,0.4), 0 10px 20px rgba(21,128,61,0.35);
+        }
+        .genius-timer-track {
+            width: 100%; height: 14px; background: rgba(0,0,0,0.35);
+            border-radius: 10px; overflow: hidden; margin-bottom: 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .genius-timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to right, #4ade80, #16a34a, #ef4444);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+        .genius-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .genius-options { grid-template-columns: 1fr; } }
+        .genius-options .btn {
+            padding: 16px 10px; font-size: clamp(1rem, 3vw, 1.25rem);
+            background: linear-gradient(to bottom, #22c55e, #15803d);
+            border-bottom: 3px solid #14532d; border-radius: 14px; min-height: 70px;
+        }
+        .genius-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(74, 222, 128, 0.15); color: #4ade80;
+            font-weight: 800; padding: 6px 16px; border-radius: 20px;
+            border: 1px solid rgba(253,224,71,0.4); margin-bottom: 12px; font-size: 0.95rem;
+        }
+
+        /* Result Share (WhatsApp) */
+        .share-box {
+            margin-top: 25px; background: #f0fdf4; border: 2px solid #bbf7d0;
+            border-radius: 16px; padding: 20px; text-align: center;
+        }
+        .share-box h4 { color: #166534; font-size: 1.2rem; margin-bottom: 12px; font-weight: 800;}
+        .share-name-input {
+            width: 100%; max-width: 320px; padding: 12px 16px; border-radius: 12px;
+            border: 2px solid #86efac; font-size: 1.05rem; text-align: center;
+            font-family: 'Cairo', sans-serif; font-weight: 700; margin-bottom: 12px;
+            color: var(--dark);
+        }
+        .share-name-input:focus { outline: none; border-color: #16a34a; }
+        .btn-share {
+            background: linear-gradient(to bottom, #25d366, #1da851);
+            border-bottom-color: #128c3e; display: inline-flex; gap: 10px;
+        }
+        .share-warning { color: var(--danger); font-weight: 700; font-size: 0.9rem; margin-top: 8px; display: none; }
+
+        /* Modal Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        /* Summary Errors Scrolling */
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* الفوتر (Footer) */
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 25px; left: 25px;
+            background: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100; transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); box-shadow: 0 12px 20px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: currentColor; }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر مع اللوجو -->
+    <header class="header-main" id="main-header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <!-- اللوجو (على اليمين) -->
+                <img src="logo.jpeg" alt="شعار الأستاذ محمد فرج منصور" style="width: 260px; height: 260px; border-radius: 30px; border: 4px solid var(--warning); box-shadow: 0 8px 16px rgba(0,0,0,0.4); background-color: white; object-fit: cover; flex-shrink: 0;">
+                
+                <!-- النصوص -->
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        درس 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لعبة
+                    </h1>
+                    <h1 class="title-line2">مع الأستاذ محمد فرج منصور</h1>
+                    <h2>الصَّفُّ الثَّالِثُ الْإِعْدَادِيُّ - الْوَحْدَةُ الثَّانِيَةُ - اسْمُ المَكَانِ</h2>
+                    <p style="margin-top: 10px;">القَوَاعِدُ النَّحْوِيَّةُ</p>
+                </div>
+            </div>
+        </div>
+        <!-- تموجات زخرفية -->
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#eef6f0" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid">
+            <!-- سيتم حقن البطاقات هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 25</span>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- سيتم حقن الأسئلة هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات السريعة -->
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | دروس وألعاب تعليمية</p>
+        <p class="designer">الأستاذ / محمد فرج منصور</p>
+    </footer>
+
+    <!-- زر الواتساب -->
+    <a href="https://wa.me/201143270328" class="whatsapp-float" target="_blank" title="تواصل معنا">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/>
+        </svg>
+    </a>
+
+<script>
+    const LESSON_NAME = "القَوَاعِدُ النَّحْوِيَّةُ: اسْمُ المَكَانِ";
+    const allGamesData = [
+    {
+        "id": "mcqmakan",
+        "title": "اختيار من متعدد",
+        "type": "mcq",
+        "desc": "أسئلة حول قاعدة اسم المكان وصياغته",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><polygon points=\"11 5 6 9 2 9 2 15 6 15 11 19 11 5\"></polygon><path d=\"M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما تعريف اسم المكان؟",
+                "options": [
+                    "اسم مشتقّ للدلالة على مكان وقوع الفعل",
+                    "اسم يدل على من قام بالفعل",
+                    "اسم يدل على زمان وقوع الفعل",
+                    "اسم يدل على من وقع عليه الفعل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "من أي شيء يُشتق اسم المكان؟",
+                "options": [
+                    "من الفعل",
+                    "من الحرف",
+                    "من الظرف مباشرة",
+                    "من اسم الفاعل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "على أي وزن يُصاغ اسم المكان من الفعل الثلاثي إذا كان مضارعه مكسور العين؟",
+                "options": [
+                    "مَفعِل بكسر العين",
+                    "مَفعَل بفتح العين",
+                    "مَفعُل بضم العين",
+                    "فاعِل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "على أي وزن يُصاغ اسم المكان من الفعل الثلاثي إذا كان مضارعه مفتوح العين أو مضمومها؟",
+                "options": [
+                    "مَفعَل بفتح العين",
+                    "مَفعِل بكسر العين",
+                    "مُفعِل",
+                    "مَفعول"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ماذا يحدث لصياغة اسم المكان إذا كان الفعل الثلاثي معتلَّ الآخر؟",
+                "options": [
+                    "يُصاغ على وزن مَفعَل بفتح العين",
+                    "يُصاغ على وزن مَفعِل بكسر العين دائمًا",
+                    "يمتنع اشتقاق اسم المكان منه",
+                    "يُصاغ على وزن فاعِل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «قَصَد» (يقصِد) هو:",
+                "options": [
+                    "مَقصِد",
+                    "مَقصَد",
+                    "قاصِد",
+                    "مَقصود"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «وَرَد» (يرِد) هو:",
+                "options": [
+                    "مَورِد",
+                    "مَورَد",
+                    "وارِد",
+                    "مَورود"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «صَنَع» (يَصنَع) هو:",
+                "options": [
+                    "مَصنَع",
+                    "مَصنِع",
+                    "صانِع",
+                    "مَصنوع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «نَبَع» (يَنبُع) هو:",
+                "options": [
+                    "مَنبَع",
+                    "مَنبِع",
+                    "نابِع",
+                    "مَنبوع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «أوى» (معتلّ الآخر) هو:",
+                "options": [
+                    "مَأوى",
+                    "مَأوٍ",
+                    "آوٍ",
+                    "مَأويّ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "كيف يُصاغ اسم المكان من الفعل غير الثلاثي؟",
+                "options": [
+                    "على وزن مضارعه مع قلب حرف المضارعة ميمًا مضمومة وفتح ما قبل الآخر",
+                    "على وزن مَفعِل دائمًا",
+                    "على وزن مَفعَل دائمًا",
+                    "بزيادة تاء في آخره فقط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «نافَسَ» هو:",
+                "options": [
+                    "مُنافَس",
+                    "مُنافِس",
+                    "نافَس",
+                    "تَنافُس"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «اتَّجَه» هو:",
+                "options": [
+                    "مُتَّجَه",
+                    "مُتَّجِه",
+                    "اتِّجاه",
+                    "وِجهة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «استخرَج» هو:",
+                "options": [
+                    "مُستخرَج",
+                    "مُستخرِج",
+                    "استخراج",
+                    "خارِج"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم يُميَّز اسم المكان من غير الثلاثي عن اسم المفعول منه إذا اتفقا في الوزن؟",
+                "options": [
+                    "بالسياق",
+                    "بالحركة الإعرابية دائمًا",
+                    "بعدد الحروف",
+                    "لا يمكن التمييز بينهما أبدًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "هل تلحق اسم المكان تاء التأنيث؟",
+                "options": [
+                    "نعم، قد تلحقه تاء التأنيث",
+                    "لا يلحقه شيء أبدًا",
+                    "يلحقه فقط حرف الجر",
+                    "يلحقه فقط ضمير متصل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "هل يُثنّى اسم المكان ويُجمع؟",
+                "options": [
+                    "نعم، يُثنّى ويُجمع",
+                    "لا يُثنّى ولا يُجمع لأنه جامد",
+                    "يُثنّى فقط دون جمع",
+                    "يُجمع فقط دون تثنية"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "كيف يُعرَب اسم المكان في الجملة؟",
+                "options": [
+                    "حسب موقعه في الجملة",
+                    "يُبنى دائمًا على الفتح",
+                    "يُبنى دائمًا على الكسر",
+                    "لا يقبل الإعراب مطلقًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "في جملة «القراءة الواعية مَورِد صافٍ للمعرفة» ما اسم المكان؟",
+                "options": [
+                    "مَورِد",
+                    "القراءة",
+                    "صافٍ",
+                    "المعرفة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "في جملة «العقل النيّر مُستقَرّ الحكمة» ما اسم المكان؟",
+                "options": [
+                    "مُستقَرّ",
+                    "العقل",
+                    "النيّر",
+                    "الحكمة"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "bubmakan",
+        "title": "الفقاعات المتساقطة",
+        "type": "bubbles",
+        "desc": "صياغة اسم المكان من أفعال متنوعة",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path><path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما اسم المكان من الفعل «قَصَد» (يقصِد)؟",
+                "options": [
+                    "مَقصِد",
+                    "مَقصَد",
+                    "قاصِد",
+                    "مَقصود"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «وَرَد» (يرِد)؟",
+                "options": [
+                    "مَورِد",
+                    "مَورَد",
+                    "وارِد",
+                    "مَورود"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «صَنَع» (يَصنَع)؟",
+                "options": [
+                    "مَصنَع",
+                    "مَصنِع",
+                    "صانِع",
+                    "مَصنوع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «نَبَع» (يَنبُع)؟",
+                "options": [
+                    "مَنبَع",
+                    "مَنبِع",
+                    "نابِع",
+                    "مَنبوع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «أوى» (المعتلّ الآخر)؟",
+                "options": [
+                    "مَأوى",
+                    "مَأوٍ",
+                    "آوٍ",
+                    "إيواء"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «نافَسَ» (غير الثلاثي)؟",
+                "options": [
+                    "مُنافَس",
+                    "مُنافِس",
+                    "نافَس",
+                    "تَنافُس"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «اتَّجَه»؟",
+                "options": [
+                    "مُتَّجَه",
+                    "مُتَّجِه",
+                    "اتِّجاه",
+                    "وِجهة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «استخرَج»؟",
+                "options": [
+                    "مُستخرَج",
+                    "مُستخرِج",
+                    "استخراج",
+                    "خارِج"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «انحدَر» (كما في نشاط الكتاب)؟",
+                "options": [
+                    "مُنحدَر",
+                    "مُنحدِر",
+                    "انحدار",
+                    "حادِر"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «استقرّ»؟",
+                "options": [
+                    "مُستقَرّ",
+                    "مُستقِرّ",
+                    "استقرار",
+                    "قارّ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «رجَع» (كما في مثال الكتاب: مرجع)؟",
+                "options": [
+                    "مَرجِع",
+                    "مَرجَع",
+                    "راجِع",
+                    "مَرجوع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «صَدَر» (كما في مثال الكتاب: مصدر)؟",
+                "options": [
+                    "مَصدَر",
+                    "مَصدِر",
+                    "صادِر",
+                    "مَصدور"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «احتكَم» (كما في نشاط الكتاب)؟",
+                "options": [
+                    "مُحتكَم",
+                    "مُحتكِم",
+                    "احتكام",
+                    "حاكِم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «عَبَر» (يَعبُر) (كما في نشاط الكتاب)؟",
+                "options": [
+                    "مَعبَر",
+                    "مَعبِر",
+                    "عابِر",
+                    "مَعبور"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «جلَس»؟",
+                "options": [
+                    "مَجلِس",
+                    "مَجلَس",
+                    "جالِس",
+                    "مَجلوس"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «حَضَرَ»؟",
+                "options": [
+                    "مَحضَر",
+                    "مَحضِر",
+                    "حاضِر",
+                    "مَحضور"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «كتَب»؟",
+                "options": [
+                    "مَكتَب",
+                    "مَكتِب",
+                    "كاتِب",
+                    "مَكتوب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «طار» (معتلّ العين)؟",
+                "options": [
+                    "مَطار",
+                    "مَطير",
+                    "طائِر",
+                    "مَطور"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «لَعِبَ»؟",
+                "options": [
+                    "مَلعَب",
+                    "مَلعِب",
+                    "لاعِب",
+                    "مَلعوب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما اسم المكان من الفعل «سَبَحَ» (يَسبَح)؟",
+                "options": [
+                    "مَسبَح",
+                    "مَسبِح",
+                    "سابِح",
+                    "مَسبوح"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "shootmakan",
+        "title": "التنشين والاصطياد",
+        "type": "shooting",
+        "desc": "إكمال قواعد اسم المكان وأمثلته من الكتاب",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>",
+        "questions": [
+            {
+                "q": "أكمل: «اسمُ المكانِ: اسمٌ مشتقٌّ للدلالةِ على ... وقوعِ الفعلِ».",
+                "options": [
+                    "مكانِ",
+                    "زمانِ",
+                    "فاعلِ",
+                    "مفعولِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «الثلاثيّ: على وزنِ (مَفعِل) بكسرِ العينِ إذا كان مضارعُهُ ...».",
+                "options": [
+                    "مكسورَ العينِ",
+                    "مفتوحَ العينِ",
+                    "مضمومَ العينِ",
+                    "ساكنَ العينِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «أو كان مُعتلَّ الأولِ وكان ... الآخرِ».",
+                "options": [
+                    "صحيحَ",
+                    "معتلَّ",
+                    "مبنيًّا",
+                    "مجزومًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وعلى وزنِ (مَفعَل) بفتحِ العينِ إذا كان مضارعُهُ مفتوحَ العينِ أو ...».",
+                "options": [
+                    "مضمومَها",
+                    "مكسورَها",
+                    "ساكنَها",
+                    "مشدّدَها"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «أو كان مُعتلَّ ...» (الشرط الثالث لصياغة مَفعَل).",
+                "options": [
+                    "الآخرِ",
+                    "الأولِ",
+                    "الوسطِ فقط",
+                    "جميع حروفِه"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «غيرُ الثلاثيِّ: على وزنِ مضارعِهِ مَعَ قَلبِ حرفِ المضارعةِ ...».",
+                "options": [
+                    "ميمًا مضمومةً",
+                    "تاءً مفتوحةً",
+                    "همزةً ساكنةً",
+                    "نونًا مكسورةً"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وفَتحِ ما قبلَ ...».",
+                "options": [
+                    "الآخرِ",
+                    "الأولِ",
+                    "الوسطِ فقط",
+                    "الهمزةِ فقط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «الفرقُ بينَ اسمِ المكانِ واسمِ المفعولِ يظهرُ منَ ...».",
+                "options": [
+                    "السياقِ",
+                    "الحركةِ الإعرابيةِ فقط",
+                    "عددِ الحروفِ",
+                    "لا فرقَ بينَهما إطلاقًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «اسمُ المكانِ قد تَلحَقُهُ تاءُ ...».",
+                "options": [
+                    "التأنيثِ",
+                    "التصغيرِ",
+                    "النسبِ",
+                    "الجمعِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «اسمُ المكانِ يُثنَّى و...».",
+                "options": [
+                    "يُجمَعُ",
+                    "يُفرَدُ فقط",
+                    "يُحذَفُ",
+                    "يُبنى"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «اسمُ المكانِ يُعرَبُ حسَبَ ... في الجُملَةِ».",
+                "options": [
+                    "موقِعِهِ",
+                    "وزنِهِ",
+                    "عددِ حروفِهِ",
+                    "أصلِ فعلِهِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب: «القراءةُ الواعيةُ ... صافٍ للمعرفةِ».",
+                "options": [
+                    "مَورِدُ",
+                    "مَورَدُ",
+                    "وارِدُ",
+                    "مَورودُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب: «الجهلُ ... خطيرٌ تهوي فيه العقولُ».",
+                "options": [
+                    "مُنحدَرٌ",
+                    "مُنحدِرٌ",
+                    "انحدارٌ",
+                    "حادِرٌ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب: «العقلُ النيّرُ ... الحكمةِ».",
+                "options": [
+                    "مُستقَرُّ",
+                    "مُستقِرُّ",
+                    "استقرارُ",
+                    "قارُّ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب: «الكتابُ الصادقُ ... للحائرينَ».",
+                "options": [
+                    "مَرجِعٌ",
+                    "مَرجَعٌ",
+                    "راجِعٌ",
+                    "مَرجوعٌ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب: «الخرافةُ ... للاضطرابِ».",
+                "options": [
+                    "مَصدَرٌ",
+                    "مَصدِرٌ",
+                    "صادِرٌ",
+                    "مَصدورٌ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل تحويل الفعل إلى اسم مكان: «يحتكِمُ المختلفونَ إلى العقلِ» ← «العقلُ ... المختلفينَ».",
+                "options": [
+                    "مُحتكَمُ",
+                    "مُحتكِمُ",
+                    "احتكامُ",
+                    "حاكِمُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل تحويل الفعل إلى اسم مكان: «تنبُعُ الفِكَرُ المُلهِمةُ من القراءةِ الواعيةِ» ← «القراءةُ الواعيةُ ... الفِكَرِ المُلهِمةِ».",
+                "options": [
+                    "مَنبَعُ",
+                    "مَنبِعُ",
+                    "نابِعُ",
+                    "مَنبوعُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل تحويل الفعل إلى اسم مكان: «العلمُ نَعبُرُ بهِ إلى إدراكِ الحقائقِ» ← «العلمُ ... إلى إدراكِ الحقائقِ».",
+                "options": [
+                    "مَعبَرٌ",
+                    "مَعبِرٌ",
+                    "عابِرٌ",
+                    "مَعبورٌ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل مثال الكتاب على المجموعة الثالثة: «ساحاتُ العلمِ ... المتفوّقينَ» (من نافَسَ).",
+                "options": [
+                    "مُنافَسُ",
+                    "مُنافِسُ",
+                    "نافَسُ",
+                    "تَنافُسُ"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "tfmakan",
+        "title": "صح أم خطأ",
+        "type": "true_false",
+        "desc": "هل العبارة صحيحة أم خاطئة في قاعدة اسم المكان؟",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>",
+        "questions": [
+            {
+                "q": "اسم المكان اسم مشتق للدلالة على مكان وقوع الفعل.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان يُشتق من الفعل المبني للمجهول فقط كاسم المفعول.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "يُصاغ اسم المكان من الفعل الثلاثي على وزن (مَفعِل) بكسر العين إذا كان مضارعه مكسور العين.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "يُصاغ اسم المكان من الفعل الثلاثي على وزن (مَفعَل) بفتح العين إذا كان مضارعه مفتوح العين أو مضمومه.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "إذا كان الفعل الثلاثي معتلَّ الآخر يُصاغ اسم المكان منه على وزن (مَفعِل) بكسر العين دائمًا.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اسم المكان من الفعل «قَصَد» هو «مَقصِد».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «صَنَع» هو «مَصنِع» بكسر العين.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اسم المكان من الفعل «نَبَع» هو «مَنبَع» رغم أن مضارعه مضموم العين.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «أوى» هو «مَأوى».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "يُصاغ اسم المكان من غير الثلاثي على وزن مضارعه مع إبدال حرف المضارعة ميمًا مضمومة وفتح ما قبل الآخر.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «نافَسَ» هو «مُنافِس» بكسر ما قبل الآخر.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اسم المكان من الفعل «اتَّجَه» هو «مُتَّجَه».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان من الفعل «استخرَج» هو «مُستخرَج».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لا يمكن التمييز بين اسم المكان واسم المفعول من غير الثلاثي إلا من خلال السياق.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم المكان لا تلحقه تاء التأنيث أبدًا.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اسم المكان يُثنّى ويُجمع مثل بقية الأسماء المشتقة المتصرفة.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "يُعرَب اسم المكان حسب موقعه في الجملة.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "في جملة «العقل النيّر مُستقَرّ الحكمة» كلمة «مُستقَرّ» اسم مكان.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "في جملة «الكتاب الصادق مرجع للحائرين» كلمة «مرجع» اسم زمان.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اسم المكان واسم الزمان من الفعل الثلاثي يشتركان في وزنَي (مَفعِل) و(مَفعَل) وفق الشروط نفسها.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "geniusmakan",
+        "title": "تحدي العباقرة",
+        "type": "genius",
+        "desc": "تحليل نحوي ودلالي عميق لاسم المكان",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما الفرق الجوهري بين اسم المكان واسم الزمان رغم اشتراكهما أحيانًا في الوزن الصرفي نفسه؟",
+                "options": [
+                    "الأول يدل على مكان وقوع الفعل، والثاني يدل على زمان وقوعه، ويُميَّز بينهما من السياق",
+                    "لا فرق بينهما إطلاقًا في المعنى أو الاستعمال",
+                    "كلاهما يدل على من قام بالفعل",
+                    "كلاهما يدل على من وقع عليه الفعل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لماذا يُصاغ اسم المكان من الفعل الثلاثي على وزنين مختلفين (مَفعِل ومَفعَل) بدل وزن واحد ثابت؟",
+                "options": [
+                    "لأن الوزن الصرفي يرتبط بحركة عين الفعل في المضارع أو باعتلال آخره، فتتغير الصيغة تبعًا لذلك",
+                    "لأن اختيار الوزن عشوائي ولا يخضع لأي قاعدة",
+                    "لأن كل الأفعال الثلاثية يجب أن تصاغ على وزن واحد فقط",
+                    "لأن الوزنين مترادفان تمامًا في كل السياقات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة صياغة اسم المكان على وزن (مَفعَل) بالفتح كلما كان الفعل الثلاثي معتلَّ الآخر؟",
+                "options": [
+                    "إعطاء أولوية لصيغة الفتح كلما كان الفعل معتلَّ الآخر تجنبًا لصعوبة النطق مع الكسر",
+                    "أن اعتلال الآخر يمنع اشتقاق اسم المكان كليًّا",
+                    "أن اعتلال الآخر يوجب دائمًا صيغة الكسر (مَفعِل)",
+                    "لا علاقة بين اعتلال الآخر واختيار الوزن الصرفي"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لماذا جاء اسم المكان من الفعل «نَبَع» (مضارعه يَنبُع بضم العين) على وزن (مَفعَل) بالفتح لا بالضم؟",
+                "options": [
+                    "لأن صيغة اسم المكان من الثلاثي تُفتح عينها إذا كان مضارعه مضموم العين، فلا وجود لوزن بالضم في هذا الباب",
+                    "لأن الفعل نبع لا يقبل اشتقاق اسم مكان منه أصلًا",
+                    "لأن قاعدة الضم هي الأصل وقد حدث خطأ إملائي في الكلمة",
+                    "لأن اسم المكان يتبع دائمًا حركة الفعل الماضي لا المضارع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما وظيفة السياق في التمييز بين اسم المكان واسم المفعول من الفعل غير الثلاثي مثل «مُستخرَج»؟",
+                "options": [
+                    "يحدد السياق ما إذا كانت الكلمة تدل على مكان الاستخراج أو على الشيء الذي وقع عليه فعل الاستخراج",
+                    "لا فائدة للسياق في هذا التمييز لأن الكلمتين مختلفتان في الشكل دائمًا",
+                    "يحدد السياق فقط زمن وقوع الفعل لا مكانه",
+                    "التمييز بينهما مستحيل حتى مع وجود السياق"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة اتفاق اسم المكان واسم المفعول من غير الثلاثي في الوزن الصرفي نفسه؟",
+                "options": [
+                    "أن الصرف العربي أحيانًا يعتمد على السياق لا الشكل وحده للتمييز بين المعاني المختلفة للفظ واحد",
+                    "أن اسم المفعول واسم المكان لفظان مترادفان تمامًا في كل الحالات",
+                    "أن هذا الاتفاق خطأ لغوي يجب تصحيحه",
+                    "أن أحد الاسمين لا وجود له أصلًا في اللغة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لماذا يُعَدّ فهم مضارع الفعل خطوة ضرورية قبل صياغة اسم المكان منه؟",
+                "options": [
+                    "لأن حركة عين المضارع هي التي تحدد وزن اسم المكان الصحيح من الفعل الثلاثي",
+                    "لأن المضارع لا علاقة له بصياغة اسم المكان إطلاقًا",
+                    "لأن اسم المكان يُشتق من الأمر لا من المضارع",
+                    "لأن كل الأفعال تتفق في حركة مضارعها دائمًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة قابلية اسم المكان لِلَحاق تاء التأنيث في بعض الاستعمالات؟",
+                "options": [
+                    "أنه اسم متصرف يخضع لأحكام التذكير والتأنيث شأنه شأن الأسماء المشتقة الأخرى",
+                    "أنه حرف مبني لا يقبل أي تغيير",
+                    "أن تاء التأنيث تُغيّر معناه إلى اسم زمان",
+                    "أن لحاق التاء يجعله فعلًا لا اسمًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة قابلية اسم المكان للتثنية والجمع؟",
+                "options": [
+                    "أنه اسم معرب متصرف وليس اسمًا جامدًا أو ظرفًا مبنيًا",
+                    "أنه فعل ماضٍ يقبل الإسناد فقط",
+                    "أنه حرف جرّ يفيد المكان",
+                    "أنه لا يقبل أي تغيير في صيغته أبدًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "علام يدل استخدام اسم المكان بدلًا من الظرف في التعبير عن مكان الحدث في بعض السياقات؟",
+                "options": [
+                    "يمنح الجملة دقة صرفية ومعنى مشتقًّا مرتبطًا بجذر الفعل، لا مجرد إشارة ظرفية عامة",
+                    "لا فرق بين استخدام اسم المكان واستخدام الظرف في أي سياق",
+                    "استخدام اسم المكان دائمًا خطأ لغوي شائع",
+                    "الظرف أدق من اسم المكان في كل الحالات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة صياغة اسم المكان من «قَصَد» على وزن (مَقصِد) بدلًا من افتراض وزن واحد لكل الأفعال الثلاثية؟",
+                "options": [
+                    "يعكس دقة القاعدة الصرفية في مراعاة حركة عين المضارع الخاصة بكل فعل على حدة",
+                    "يدل على أن القاعدة الصرفية عشوائية وغير منتظمة",
+                    "يدل على أن الفعل قَصَد لا يقبل اشتقاق اسم مكان منه",
+                    "لا علاقة بين وزن الاسم وحركة عين المضارع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لماذا يُصاغ اسم المكان من «أوى» (المعتلّ الآخر) على وزن (مَفعَل) رغم عدم انطباق شرط الفتح أو الضم للعين مباشرة؟",
+                "options": [
+                    "لأن اعتلال آخر الفعل من الشروط المستقلة الموجبة لصياغة اسم المكان على وزن الفتح",
+                    "لأن الفعل أوى لا يقبل الاشتقاق منه أصلًا",
+                    "لأن اعتلال الآخر يوجب دائمًا وزن الكسر لا الفتح",
+                    "لا علاقة بين اعتلال آخر الفعل ووزن اسم المكان"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما العلاقة بين وزن اسم المكان من غير الثلاثي ووزن مضارعه المبني للمعلوم؟",
+                "options": [
+                    "يُبنى اسم المكان على صيغة المضارع نفسها مع تعديل حرف المضارعة إلى ميم مضمومة وفتح ما قبل الآخر",
+                    "لا علاقة بين صيغة المضارع واسم المكان من غير الثلاثي",
+                    "يُبنى اسم المكان من غير الثلاثي على الفعل الماضي فقط",
+                    "يُبنى اسم المكان من غير الثلاثي على وزن ثابت واحد بصرف النظر عن المضارع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة استخدام أمثلة من مجالات مختلفة (العلم، الأخلاق، الفكر) لتوضيح قاعدة اسم المكان في النص؟",
+                "options": [
+                    "تعميم فهم القاعدة النحوية على سياقات متنوعة بدل قصرها على أمثلة حسية محدودة",
+                    "حصر استخدام اسم المكان في مجال العلم فقط",
+                    "الدلالة على أن اسم المكان لا يصلح إلا للمعاني المجردة",
+                    "لا غاية من تنويع الأمثلة في عرض القاعدة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة المقابلة بين «مَنبَع» (اسم مكان) و«يَنبُع» (فعل مضارع) في بيان القاعدة؟",
+                "options": [
+                    "توضيح آلية الاشتقاق بالانتقال من صيغة الفعل الدال على الحدث إلى صيغة الاسم الدال على مكانه",
+                    "بيان أن الكلمتين لا علاقة بينهما في الاشتقاق",
+                    "الدلالة على أن اسم المكان يُشتق من اسم الفاعل لا من الفعل",
+                    "إثبات أن الفعل والاسم المشتق منه متطابقان في المعنى تمامًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "لماذا يصعب أحيانًا التمييز بين اسم المكان واسم المفعول من الفعل الثلاثي إذا اتفقا في الوزن؟",
+                "options": [
+                    "لأن كليهما قد يُصاغان أحيانًا على وزن مشابه، فيتوجب اللجوء إلى السياق ومعنى الجملة لتحديد المقصود",
+                    "لأن أحدهما لا وجود له في اللغة العربية أصلًا",
+                    "لأن قواعد صياغتهما متناقضة تمامًا فلا يمكن أن يتشابها أبدًا",
+                    "لأن اسم المفعول لا يُشتق إلا من الأفعال اللازمة فقط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة كون قاعدة اسم المكان وقاعدة اسم الزمان من الفعل الثلاثي متطابقتين تقريبًا في الصياغة؟",
+                "options": [
+                    "أن الفارق بينهما ليس صرفيًّا شكليًّا بل دلاليًّا يتحدد بمعنى السياق (مكان أم زمان)",
+                    "أن أحد الاسمين زائد عن الحاجة في اللغة العربية",
+                    "أن اسم الزمان فرع من اسم المكان وليس اسمًا مستقلًّا بذاته",
+                    "أن التطابق في الصياغة يجعل التفريق بينهما مستحيلًا في كل الحالات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما الأثر الدلالي لاختيار الكاتب كلمة «مُستقَرّ» بدلًا من «مكان» في وصف الحكمة؟",
+                "options": [
+                    "إضفاء دلالة الثبات والرسوخ على العقل النيّر بوصفه موطنًا دائمًا للحكمة لا مجرد مكان عابر لها",
+                    "لا فرق دلاليًّا بين الكلمتين في هذا السياق",
+                    "الإيحاء بأن الحكمة عابرة وغير ثابتة في العقل النيّر",
+                    "الدلالة على أن الحكمة لا علاقة لها بالعقل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة استخدام اسم المكان «مَصدَر» في وصف الخرافة بأنها مصدر للاضطراب؟",
+                "options": [
+                    "تصوير الخرافة بوصفها منبعًا ينبثق منه الاضطراب، مما يعزز الصورة الذهنية لخطورتها",
+                    "الإيحاء بأن الخرافة لا علاقة لها بالاضطراب إطلاقًا",
+                    "الدلالة على أن الخرافة مصدر طمأنينة لا اضطراب",
+                    "لا قيمة بلاغية لاستخدام اسم المكان في هذا السياق"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما القيمة الصرفية العامة التي يمكن استخلاصها من دراسة اسمي المكان والزمان معًا؟",
+                "options": [
+                    "أن الاشتقاق الصرفي في العربية نظام دقيق يربط شكل الكلمة بمعناها ووظيفتها النحوية والدلالية معًا",
+                    "أن الاشتقاق الصرفي عشوائي ولا يخضع لقواعد واضحة",
+                    "أن اسمي المكان والزمان لا فائدة عملية منهما في اللغة",
+                    "أن دراستهما معًا تزيد من غموض القاعدة النحوية دون فائدة"
+                ],
+                "ans": 0
+            }
+        ]
+    }
+];
+
+    // --- محرك الصوت للمؤثرات التفاعلية ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.1, 0.1); 
+        setTimeout(() => playTone(659.25, 'sine', 0.1, 0.1), 100); 
+        setTimeout(() => playTone(783.99, 'sine', 0.2, 0.15), 200); 
+        setTimeout(() => playTone(1046.50, 'sine', 0.4, 0.2), 300); 
+        triggerConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(300, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => playTone(200, 'sawtooth', 0.25, 0.15), 150);
+        
+        const qBox = document.querySelector('.question-box');
+        if(qBox) {
+            qBox.classList.remove('shake');
+            void qBox.offsetWidth; 
+            qBox.classList.add('shake');
+        }
+    }
+
+    // --- مؤثرات بصرية ---
+    function triggerConfetti() {
+        const colors = ['#f72585', '#4cc9f0', '#fee440', '#00f5d4', '#8b5cf6'];
+        for(let i=0; i<40; i++) {
+            let conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، بطل!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300); // وقت الانتقال للسؤال التالي
+    }
+
+    // --- متغيرات محرك اللعبة ---
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let geniusTimerInterval = null;
+    let wrongAnswers = []; // مصفوفة لتخزين الأخطاء
+
+    // --- التهيئة ---
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <div class="share-box">
+                    <h4>📲 أرسل نتيجتك إلى الأستاذ محمد</h4>
+                    <input type="text" id="student-name-input" class="share-name-input" placeholder="اكتب اسمك هنا أولًا">
+                    <div id="share-warning" class="share-warning">من فضلك اكتب اسمك أولًا قبل الإرسال ✋</div>
+                    <div>
+                        <button class="btn btn-share" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/></svg>
+                            إرسال النتيجة عبر واتساب
+                        </button>
+                    </div>
+                </div>
+                <button class="btn back-btn" style="font-size:1.1rem; padding:15px 30px; margin-top: 18px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    function sendResultToTeacher(score, total) {
+        const nameInput = document.getElementById('student-name-input');
+        const warning = document.getElementById('share-warning');
+        const name = nameInput.value.trim();
+        if (!name) {
+            warning.style.display = 'block';
+            nameInput.classList.add('shake');
+            nameInput.focus();
+            setTimeout(() => nameInput.classList.remove('shake'), 500);
+            return;
+        }
+        warning.style.display = 'none';
+        const gameTitle = currentGame ? currentGame.title : '';
+        const message =
+            `📚 نتيجة طالب - ${LESSON_NAME}\n` +
+            `👤 اسم الطالب: ${name}\n` +
+            `🎮 اللعبة: ${gameTitle}\n` +
+            `✅ النتيجة: ${score} من ${total}\n` +
+            `⭐ نسبة النجاح: ${Math.round((score/total)*100)}%`;
+        const url = `https://wa.me/201143270328?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = shuffleArray([...gameData.questions]);
+        qIndex = 0;
+        wrongAnswers = []; // تصفير قائمة الأخطاء
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // --- أنماط الألعاب ---
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        // ترتيب ثابت (صح يميناً وخطأ يساراً)
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 5. تحدي العباقرة (سؤال بعدّاد زمني)
+    function renderGenius(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const wrap = document.createElement('div');
+        wrap.className = 'genius-wrap';
+
+        const badge = document.createElement('div');
+        badge.className = 'genius-badge';
+        badge.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z"></path></svg> تحدي العباقرة`;
+
+        const timerTrack = document.createElement('div');
+        timerTrack.className = 'genius-timer-track';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerTrack.appendChild(timerBar);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.style.background = 'rgba(255,255,255,0.95)';
+        qBox.innerText = qData.q;
+
+        const optContainer = document.createElement('div');
+        optContainer.className = 'genius-options';
+
+        let isAnswered = false;
+        const TOTAL_TIME = 12000; // 12 ثانية لكل سؤال
+        let startTime = Date.now();
+
+        function finishQuestion(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(geniusTimerInterval);
+            if (!isCorrect) {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText || "انتهى الوقت!" });
+            }
+            showFeedback(isCorrect, () => { qIndex++; renderNextState(); });
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finishQuestion(true, opt);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finishQuestion(false, opt);
+                }
+            };
+            optContainer.appendChild(btn);
+        });
+
+        wrap.appendChild(badge);
+        wrap.appendChild(timerTrack);
+        container.appendChild(wrap);
+        container.appendChild(qBox);
+        container.appendChild(optContainer);
+
+        geniusTimerInterval = setInterval(() => {
+            if (isAnswered) { clearInterval(geniusTimerInterval); return; }
+            const elapsed = Date.now() - startTime;
+            const pct = Math.max(0, 100 - (elapsed / TOTAL_TIME) * 100);
+            timerBar.style.width = pct + '%';
+            if (elapsed >= TOTAL_TIME) {
+                clearInterval(geniusTimerInterval);
+                finishQuestion(false, null);
+            }
+        }, 80);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            let speed = 0.95 + Math.random() * 0.65; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 30);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 20);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك لاصطيادها!`;
+        container.appendChild(hint);
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>
