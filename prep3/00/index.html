@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>درس ثمرة القراءة - الصف الثالث الإعدادي</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14532d;      
+            --primary-light: #16a34a; 
+            --secondary: #059669;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #65a30d;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #eef6f0;
+            background-image: radial-gradient(#c9dccd 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* --- الهيدر الرئيسي --- */
+        .header-main {
+            background: linear-gradient(135deg, #052e16, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #dcfce7;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(1.4rem, 5.5vw, 2.6rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #4ade80, #15803d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #ecfdf5; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* --- الأزرار --- */
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        /* --- الشاشة الرئيسية --- */
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(34, 197, 94, 0.25); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #14532d; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.4rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 1rem; color: #64748b; font-weight: 600;}
+
+        /* --- شاشة اللعب --- */
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #16a34a; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 800;
+            color: #14532d;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #059669;
+            line-height: 1.6;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* MCQ Style */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1.1rem, 3.5vw, 1.4rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        /* True/False Style */
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        /* Bubbles Style */
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #052e16, #14532d);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #16a34a; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(224,231,255,0.9));
+            color: #14532d;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        /* Shooting Style */
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23e0fbfc" width="100%" height="100%"/><circle fill="%23bae6fd" cx="20%" cy="30%" r="50"/><circle fill="%23bae6fd" cx="80%" cy="60%" r="70"/><circle fill="%23bae6fd" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #16a34a; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.95rem, 3vw, 1.15rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #f0fdf4; }
+
+        /* Genius Challenge Style */
+        .genius-wrap {
+            background: linear-gradient(135deg, #052e16, #14532d, #15803d);
+            border-radius: 16px; padding: 20px; margin-top: 10px;
+            border: 4px solid #4ade80; box-shadow: inset 0 0 25px rgba(0,0,0,0.4), 0 10px 20px rgba(21,128,61,0.35);
+        }
+        .genius-timer-track {
+            width: 100%; height: 14px; background: rgba(0,0,0,0.35);
+            border-radius: 10px; overflow: hidden; margin-bottom: 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .genius-timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to right, #4ade80, #16a34a, #ef4444);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+        .genius-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .genius-options { grid-template-columns: 1fr; } }
+        .genius-options .btn {
+            padding: 16px 10px; font-size: clamp(1rem, 3vw, 1.25rem);
+            background: linear-gradient(to bottom, #22c55e, #15803d);
+            border-bottom: 3px solid #14532d; border-radius: 14px; min-height: 70px;
+        }
+        .genius-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(74, 222, 128, 0.15); color: #4ade80;
+            font-weight: 800; padding: 6px 16px; border-radius: 20px;
+            border: 1px solid rgba(253,224,71,0.4); margin-bottom: 12px; font-size: 0.95rem;
+        }
+
+        /* Result Share (WhatsApp) */
+        .share-box {
+            margin-top: 25px; background: #f0fdf4; border: 2px solid #bbf7d0;
+            border-radius: 16px; padding: 20px; text-align: center;
+        }
+        .share-box h4 { color: #166534; font-size: 1.2rem; margin-bottom: 12px; font-weight: 800;}
+        .share-name-input {
+            width: 100%; max-width: 320px; padding: 12px 16px; border-radius: 12px;
+            border: 2px solid #86efac; font-size: 1.05rem; text-align: center;
+            font-family: 'Cairo', sans-serif; font-weight: 700; margin-bottom: 12px;
+            color: var(--dark);
+        }
+        .share-name-input:focus { outline: none; border-color: #16a34a; }
+        .btn-share {
+            background: linear-gradient(to bottom, #25d366, #1da851);
+            border-bottom-color: #128c3e; display: inline-flex; gap: 10px;
+        }
+        .share-warning { color: var(--danger); font-weight: 700; font-size: 0.9rem; margin-top: 8px; display: none; }
+
+        /* Modal Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        /* Summary Errors Scrolling */
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* الفوتر (Footer) */
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 25px; left: 25px;
+            background: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100; transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); box-shadow: 0 12px 20px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: currentColor; }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر مع اللوجو -->
+    <header class="header-main" id="main-header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <!-- اللوجو (على اليمين) -->
+                <img src="logo.jpeg" alt="شعار الأستاذ محمد فرج منصور" style="width: 260px; height: 260px; border-radius: 30px; border: 4px solid var(--warning); box-shadow: 0 8px 16px rgba(0,0,0,0.4); background-color: white; object-fit: cover; flex-shrink: 0;">
+                
+                <!-- النصوص -->
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        درس 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لعبة
+                    </h1>
+                    <h1 class="title-line2">مع الأستاذ محمد فرج منصور</h1>
+                    <h2>الصَّفُّ الثَّالِثُ الْإِعْدَادِيُّ - الْوَحْدَةُ الثَّانِيَةُ - ثَمَرَةُ القِرَاءَةِ</h2>
+                    <p style="margin-top: 10px;">نَصُّ اسْتِمَاعٍ</p>
+                </div>
+            </div>
+        </div>
+        <!-- تموجات زخرفية -->
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#eef6f0" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid">
+            <!-- سيتم حقن البطاقات هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 25</span>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- سيتم حقن الأسئلة هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات السريعة -->
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | دروس وألعاب تعليمية</p>
+        <p class="designer">الأستاذ / محمد فرج منصور</p>
+    </footer>
+
+    <!-- زر الواتساب -->
+    <a href="https://wa.me/201143270328" class="whatsapp-float" target="_blank" title="تواصل معنا">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/>
+        </svg>
+    </a>
+
+<script>
+    const LESSON_NAME = "نَصُّ اسْتِمَاعٍ: ثَمَرَةُ القِرَاءَةِ";
+    const allGamesData = [
+    {
+        "id": "mcqthamarah",
+        "title": "اختيار من متعدد",
+        "type": "mcq",
+        "desc": "أسئلة فهم واستيعاب من نص ثمرة القراءة",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><polygon points=\"11 5 6 9 2 9 2 15 6 15 11 19 11 5\"></polygon><path d=\"M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما عنوان نص الاستماع الأول في الوحدة الثانية؟",
+                "options": [
+                    "ثمرة القراءة",
+                    "أفضل النعم",
+                    "خير جليس",
+                    "تاج الفضائل"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "في أي وحدة يقع درس «ثمرة القراءة»؟",
+                "options": [
+                    "الوحدة الثانية: نحو تفكير سليم",
+                    "الوحدة الأولى: قيم تحمي شبابنا",
+                    "الوحدة الثالثة: أنا والمستقبل",
+                    "لا يتبع أي وحدة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما الهدف الذي يسعى إليه الدرس بحسب التمهيد؟",
+                "options": [
+                    "تشجيع الطلاب على التفكير السليم واستخدام عقولهم في تحليل المواد المقروءة",
+                    "تعليم الطلاب حفظ النصوص دون فهمها",
+                    "تدريب الطلاب على الكتابة الخطية فقط",
+                    "تعريف الطلاب بتاريخ المكتبات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "مم يحذّر التمهيد الطلاب؟",
+                "options": [
+                    "من الكسل الفكري والاستسلام للمعلومات المضللة",
+                    "من الإكثار من القراءة",
+                    "من ارتياد المكتبات",
+                    "من كتابة الملخصات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "إلى أين ذهب الطلاب في صحبة معلمهم في مطلع النص؟",
+                "options": [
+                    "إلى مكتبة المدرسة",
+                    "إلى المكتبة العامة بالمدينة",
+                    "إلى معرض للكتاب",
+                    "إلى دار نشر"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ماذا طلب المعلم من الطلاب في المكتبة؟",
+                "options": [
+                    "أن يدوّن كل منهم ما يروقه له",
+                    "أن يحفظوا عناوين الكتب فقط",
+                    "أن يلتزموا الصمت دون قراءة",
+                    "أن يستعيروا أكبر عدد من الكتب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم سُمّيت الكراسة التي يدوّن فيها الطلاب ما توصلوا إليه من قراءتهم؟",
+                "options": [
+                    "ثمرة القراءة",
+                    "يوميات القراءة",
+                    "ملخص الكتب",
+                    "دفتر الملاحظات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ماذا فعل المعلم بعد أيام من زيارة المكتبة؟",
+                "options": [
+                    "جمع كراريس (ثمرة القراءة) واطّلع على ما دوّنه التلاميذ فيها",
+                    "ألغى نشاط زيارة المكتبة",
+                    "طلب من الطلاب إعادة الزيارة",
+                    "وزّع كتبًا جديدة على الطلاب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "من الطالب الذي فاز بالجائزة في النص؟",
+                "options": [
+                    "إبراهيم",
+                    "أحمد",
+                    "محمد",
+                    "خالد"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم وصف المعلم اختيار إبراهيم وأسلوبه؟",
+                "options": [
+                    "أجاد الاختيار ولخّص فكرة عميقة بأسلوب رصين",
+                    "أساء الاختيار ولم يلخص شيئًا مفيدًا",
+                    "لخّص فكرة سطحية بأسلوب ضعيف",
+                    "لم يقدم أي جديد يستحق الذكر"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما عنوان الموضوع الذي كتبه إبراهيم؟",
+                "options": [
+                    "المعرفة بين العمق والسطحية",
+                    "أهمية القراءة في حياتنا",
+                    "المكتبة المدرسية ودورها",
+                    "التكنولوجيا الحديثة وأثرها"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم وصف إبراهيم تدفق المعلومات في عصرنا؟",
+                "options": [
+                    "كالسيل الجارف بفضل الهواتف الذكية",
+                    "بأنه محدود وبطيء",
+                    "بأنه شبه منعدم",
+                    "بأنه يقتصر على الكتب الورقية فقط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما الوهم الذي حذّر منه الخبراء بحسب ما كتبه إبراهيم؟",
+                "options": [
+                    "وهم المعرفة الناتج عن سرعة الوصول للمعلومة دون تفكير عميق",
+                    "وهم أن القراءة مضيعة للوقت",
+                    "وهم أن الكتب الورقية أفضل من الرقمية دائمًا",
+                    "وهم أن المعرفة لا تُكتسب إلا بالمدرسة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم وصف النص المعلومات المتناثرة على شبكات التواصل؟",
+                "options": [
+                    "أنها ليست علمًا محضًا بل مواد خام تحتاج إلى قراءة واعية",
+                    "أنها معرفة كاملة لا تحتاج أي تدقيق",
+                    "أنها معلومات موثوقة دائمًا",
+                    "أنها أدق من المعلومات الموجودة في الكتب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما أثر الاعتماد المفرط على محركات البحث بحسب النص؟",
+                "options": [
+                    "يعرّض العقول للكسل ويُفقدها مهارة التفكير الناقد",
+                    "يزيد من قدرة العقل على التحليل العميق",
+                    "لا أثر له على طريقة تفكير الإنسان",
+                    "يجعل الإنسان أكثر حكمة وتأنيًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ماذا تصبح العقول التي تفقد مهارة التفكير الناقد بحسب النص؟",
+                "options": [
+                    "صيدًا سهلًا للشائعات",
+                    "أكثر مناعة ضد التضليل",
+                    "قادرة على تمييز الحقيقة من الزيف بسهولة",
+                    "غير متأثرة بأي معلومة خاطئة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم وصف المعلم القراءة في تعليقه على كراسة إبراهيم؟",
+                "options": [
+                    "ليست مجرد استهلاك للكلمات بل بناء للوعي",
+                    "مجرد وسيلة للترفيه لا أكثر",
+                    "نشاط ثانوي يمكن الاستغناء عنه",
+                    "عبء يُثقل كاهل الطالب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "بم وصف المعلم إبراهيم في ختام تعليقه؟",
+                "options": [
+                    "استحق أن يكون قدوة لزملائه",
+                    "لم يبذل أي جهد يُذكر",
+                    "قصّر في اختيار موضوعه",
+                    "احتاج إلى مزيد من التوجيه"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ماذا يرجو المعلم من باقي الطلاب في ختام النص؟",
+                "options": [
+                    "أن يرى في كراريسهم الجيد من الموضوعات ليكافئهم ويستفيد الجميع من قراءتهم",
+                    "أن يتوقفوا عن القراءة لفترة",
+                    "أن يكتفوا بما درسوه دون أي إضافة",
+                    "ألا يحاولوا منافسة إبراهيم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما الفكرة الرئيسة لنص «ثمرة القراءة»؟",
+                "options": [
+                    "القراءة الواعية المتأنية تثمر تفكيرًا سليمًا وتحمي من الاستسلام للمعلومات السطحية",
+                    "القراءة نشاط ترفيهي فقط",
+                    "التكنولوجيا أفضل بديل عن القراءة",
+                    "المكتبات لم تعد ذات جدوى في العصر الحالي"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "bubthamarah",
+        "title": "الفقاعات المتساقطة",
+        "type": "bubbles",
+        "desc": "معاني كلمات نص ثمرة القراءة",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path><path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما معنى «تعجّ» كما وردت في وصف حال المعلومات على شبكات التواصل أو الأماكن المزدحمة؟",
+                "options": [
+                    "تمتلئ وتزدحم",
+                    "تخلو وتفرغ",
+                    "تهدأ وتسكن",
+                    "تختفي وتغيب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما مضاد «تعجّ»؟",
+                "options": [
+                    "تخلو وتفرغ",
+                    "تمتلئ",
+                    "تزدحم",
+                    "تكتظ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «يروق» في قول المعلم «ما يروقه»؟",
+                "options": [
+                    "يعجبه وينال استحسانه",
+                    "يسوءه وينفره",
+                    "يُهمله ولا يبالي به",
+                    "يُخيفه ويُقلقه"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما مضاد «يروق»؟",
+                "options": [
+                    "يسوءه وينفره",
+                    "يعجبه",
+                    "يُرضيه",
+                    "يُبهجه"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «رصين» في وصف أسلوب إبراهيم؟",
+                "options": [
+                    "مُحكَم وقويّ",
+                    "ضعيف ومهلهل",
+                    "غامض ومبهم",
+                    "مضطرب ومشوّش"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما مضاد «رصين»؟",
+                "options": [
+                    "ضعيف",
+                    "مُحكَم",
+                    "قويّ",
+                    "متين"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «النابه» في وصف زميل الطلاب (إبراهيم)؟",
+                "options": [
+                    "الذكي الفطن",
+                    "الكسول المهمل",
+                    "الخجول الصامت",
+                    "الغافل الساهي"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «السيل الجارف» في وصف تدفق المعلومات؟",
+                "options": [
+                    "الماء الكثير المندفع الذي يكتسح كل ما في طريقه",
+                    "الماء القليل الراكد الهادئ",
+                    "النهر الجاف الخالي من الماء",
+                    "المطر الخفيف المتقطع"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «المتناثرة» في وصف المعلومات على شبكات التواصل؟",
+                "options": [
+                    "المنتشرة",
+                    "المنحصرة",
+                    "المجمّعة",
+                    "المرتّبة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما مضاد «المتناثرة»؟",
+                "options": [
+                    "المنحصرة",
+                    "المنتشرة",
+                    "المتفرقة",
+                    "المبعثرة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «مَحضًا» في قول النص «ليست علمًا محضًا»؟",
+                "options": [
+                    "خالصًا",
+                    "ناقصًا",
+                    "مشكوكًا فيه",
+                    "زائفًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «المتأنية» في وصف القراءة الواعية؟",
+                "options": [
+                    "المتمهلة",
+                    "المتعجلة",
+                    "المتسرعة",
+                    "العشوائية"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما مضاد «المتأنية»؟",
+                "options": [
+                    "المتعجلة",
+                    "المتمهلة",
+                    "الهادئة",
+                    "المتروية"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «التشتّت» كما وردت في سياق الحديث عن العقل؟",
+                "options": [
+                    "انشغال العقل بأكثر من مؤثر",
+                    "التركيز الكامل على أمر واحد",
+                    "الهدوء التام والاستقرار الذهني",
+                    "الفهم العميق للأمور"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «يُعمل عقله» في وصف القراءة الواعية؟",
+                "options": [
+                    "يُفكر",
+                    "يُهمل التفكير",
+                    "يعتمد على غيره كليًّا",
+                    "يحفظ دون فهم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «استهلاك» في وصف القراءة غير الواعية؟",
+                "options": [
+                    "استخدام وتلقٍّ عابر دون تفكير",
+                    "بناء عميق للمعرفة",
+                    "تحليل دقيق للمعلومات",
+                    "إبداع وابتكار في الفهم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «جِدّه» في وصف اجتهاد إبراهيم؟",
+                "options": [
+                    "اجتهاده وسعيه الدؤوب",
+                    "كسله وإهماله",
+                    "تردده وحيرته",
+                    "غفلته وسهوه"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «قدوة» في وصف المعلم لإبراهيم؟",
+                "options": [
+                    "نموذج يُحتذى ويُقتدى به",
+                    "شخص معزول لا يُقتدى به",
+                    "عبء على زملائه",
+                    "غريب الأطوار"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «الوهم» كما وردت في تعبير «وهم المعرفة»؟",
+                "options": [
+                    "اعتقاد غير مطابق للحقيقة",
+                    "يقين تام لا شك فيه",
+                    "معرفة راسخة موثقة",
+                    "حقيقة علمية مؤكدة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما معنى «الخبراء» كما وردت في تحذيرهم من وهم المعرفة؟",
+                "options": [
+                    "أصحاب الدراية والتخصص العميق في مجال ما",
+                    "المبتدئون في مجال ما",
+                    "الأشخاص العاديون دون تخصص",
+                    "من لا علم لهم بالموضوع"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "shootthamarah",
+        "title": "التنشين والاصطياد",
+        "type": "shooting",
+        "desc": "إكمال عبارات من نص ثمرة القراءة",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>",
+        "questions": [
+            {
+                "q": "أكمل: «ذَهَبَ الطُّلّابُ في صُحبَةِ مُعَلِّمِهِم إلى ...».",
+                "options": [
+                    "مَكتَبَةِ المَدرَسَةِ",
+                    "المَكتَبَةِ العامَّةِ",
+                    "مَعرِضِ الكِتابِ",
+                    "دارِ النَّشرِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وقالَ لَهُمُ المُعَلِّمُ: عَلى كُلِّ مِنكُم أن يُدَوِّنَ ما ...».",
+                "options": [
+                    "يَروقُهُ",
+                    "يَنساهُ",
+                    "يُهمِلُهُ",
+                    "يَتَجاهَلُهُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وبَعدَ أيّامٍ، جَمَعَ المُعَلِّمُ كَراريسَ ...».",
+                "options": [
+                    "ثَمَرَةِ القِراءَةِ",
+                    "الواجِباتِ المَدرَسِيَّةِ",
+                    "الاختِباراتِ",
+                    "الرُّسومِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «ثُمَّ أعلَنَ فَوزَ الطّالِبِ ... بِالجائِزَةِ».",
+                "options": [
+                    "إبراهيمَ",
+                    "أحمَدَ",
+                    "مُحَمَّدٍ",
+                    "خالِدٍ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «لَقَد أجادَ إبراهيمُ الاختِيارَ، ولَخَّصَ فِكرَةً عَميقَةً بِأسلوبٍ ...».",
+                "options": [
+                    "رَصينٍ",
+                    "ضَعيفٍ",
+                    "مُضطَرِبٍ",
+                    "غامِضٍ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وسَأقرَأُ لَكُم ما دَوَّنَهُ زَميلُكُمُ ...».",
+                "options": [
+                    "النّابِهُ",
+                    "الكَسولُ",
+                    "الغافِلُ",
+                    "الخَجولُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «كَتَبَ إبراهيمُ تَحتَ عُنوانِ (المَعرِفَةُ بَينَ العُمقِ و...)».",
+                "options": [
+                    "السَّطحِيَّةِ",
+                    "الوُضوحِ",
+                    "الغُموضِ",
+                    "التَّجدُّدِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «نَعيشُ اليَومَ في عَصرٍ تَتَدَفَّقُ فيهِ المَعلوماتُ كَالسَّيلِ ...».",
+                "options": [
+                    "الجارِفِ",
+                    "الهادِئِ",
+                    "الرّاكِدِ",
+                    "الضَّعيفِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «بِفَضلِ شاشاتٍ صَغيرَةٍ تَحمِلُها هَواتِفُنا في ...».",
+                "options": [
+                    "جُيوبِنا",
+                    "حَقائِبِنا فَقَط",
+                    "مَكاتِبِنا فَقَط",
+                    "بُيوتِنا فَقَط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وقَد يَظُنُّ بَعضُنا أنَّ وُصولَنا السَّريعَ لِلمَعلومَةِ بِمُجَرَّدِ ضَغطَةِ زِرٍّ يَجعَلُنا أكثَرَ عِلمًا مِنَ ...».",
+                "options": [
+                    "الأجيالِ السّابِقَةِ",
+                    "المُعَلِّمينَ",
+                    "الخُبَراءِ",
+                    "الآباءِ فَقَط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «ولَكِنَّ الحَقيقَةَ الَّتي يُحَذِّرُنا مِنها الخُبَراءُ هِيَ وُقوعُنا في وَهمِ ...».",
+                "options": [
+                    "المَعرِفَةِ",
+                    "الجَهلِ",
+                    "النِّسيانِ",
+                    "الشَّكِّ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «فَالمَعلوماتُ المُتَناثِرَةُ عَلى شَبَكاتِ التَّواصُلِ لَيسَت عِلمًا ...».",
+                "options": [
+                    "مَحضًا",
+                    "ناقِصًا",
+                    "زائِفًا تَمامًا",
+                    "مَشكوكًا فيهِ دائِمًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «بَل هِيَ مَوادُّ خامٌ تَحتاجُ إلى قِراءَةٍ واعِيَةٍ ...».",
+                "options": [
+                    "تُعمِلُ العَقلَ",
+                    "تُهمِلُ التَّفكيرَ",
+                    "تَعتَمِدُ عَلى الحِفظِ فَقَط",
+                    "تَرفُضُ كُلَّ جَديدٍ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «والاعتِمادُ المُفرِطُ عَلى مُحَرِّكاتِ البَحثِ يُعَرِّضُ عُقولَنا ...».",
+                "options": [
+                    "لِلكَسَلِ",
+                    "لِلنَّشاطِ",
+                    "لِلتَّطَوُّرِ",
+                    "لِلإبداعِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «فَتَفقِدُ مَهارَةَ التَّفكيرِ ...».",
+                "options": [
+                    "النّاقِدِ",
+                    "الحُرِّ فَقَط",
+                    "الجَماعِيِّ فَقَط",
+                    "السَّريعِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وتُصبِحُ صَيدًا سَهلًا ...».",
+                "options": [
+                    "لِلشّائِعاتِ",
+                    "لِلحَقائِقِ",
+                    "لِلمَعرِفَةِ اليَقينِيَّةِ",
+                    "لِلعِلمِ الرّاسِخِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «أغلَقَ المُعَلِّمُ كُرّاسَةَ إبراهيمَ مُبتَسِمًا وقالَ: هَذا هُوَ التَّفكيرُ ... يا أبنائي».",
+                "options": [
+                    "السَّليمُ",
+                    "الخاطِئُ",
+                    "السَّطحِيُّ",
+                    "المُتَسَرِّعُ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «فَالقِراءَةُ لَيسَت مُجَرَّدَ استِهلاكٍ لِلكَلِماتِ، بَل هِيَ بِناءٌ ...».",
+                "options": [
+                    "لِلوَعيِ",
+                    "لِلمالِ",
+                    "لِلجَسَدِ",
+                    "لِلشُّهرَةِ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «فَاستَحَقَّ أن يَكونَ ... لَكُم».",
+                "options": [
+                    "قُدوَةً",
+                    "عِبئًا",
+                    "غَريبًا",
+                    "مُنعَزِلًا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "أكمل: «وأرجو أن أرى في كَراريسِكُمُ الجَيِّدَ مِنَ ...؛ لِأُكافِئَكُم».",
+                "options": [
+                    "المَوضوعاتِ",
+                    "الرُّسومِ",
+                    "الأخطاءِ",
+                    "التَّكاليفِ"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "tfthamarah",
+        "title": "صح أم خطأ",
+        "type": "true_false",
+        "desc": "هل العبارة صحيحة أم خاطئة وفق نص ثمرة القراءة؟",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>",
+        "questions": [
+            {
+                "q": "عنوان نص الاستماع الأول في الوحدة الثانية هو «ثمرة القراءة».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "يقع درس «ثمرة القراءة» في الوحدة الثانية «نحو تفكير سليم».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ذهب الطلاب في صحبة معلمهم إلى المكتبة العامة بالمدينة.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "طلب المعلم من الطلاب أن يدوّن كل منهم ما يروقه له في القراءة.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "اسم الكراسة التي دوّن فيها الطلاب ملاحظاتهم هو «ثمرة القراءة».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "فاز الطالب إبراهيم بالجائزة لتميز اختياره وأسلوبه.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "عنوان الموضوع الذي كتبه إبراهيم هو «المعرفة بين العمق والسطحية».",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "وصف إبراهيم تدفق المعلومات في عصرنا بأنه محدود وبطيء.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "حذّر الخبراء بحسب النص من وهم المعرفة الناتج عن سرعة الوصول للمعلومة دون تفكير عميق.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "المعلومات المتناثرة على شبكات التواصل علمٌ محض بحسب النص.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "الاعتماد المفرط على محركات البحث يُعرّض العقول للكسل بحسب النص.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "فقدان مهارة التفكير الناقد يجعل العقل صيدًا سهلًا للشائعات بحسب النص.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "وصف المعلم القراءة بأنها مجرد استهلاك للكلمات لا أكثر.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "اعتبر المعلم أن القراءة بناء للوعي لا مجرد استهلاك للكلمات.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "رأى المعلم أن إبراهيم استحق أن يكون قدوة لزملائه.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "رجا المعلم ألا يرى أي كراسة أخرى متميزة من زملاء إبراهيم.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "كلمة «رصين» تعني ضعيفًا هزيلًا.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "كلمة «النابه» تعني الذكي الفطن.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "كلمة «التشتّت» تعني التركيز الكامل على أمر واحد.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 1
+            },
+            {
+                "q": "الفكرة الرئيسة للنص هي أن القراءة الواعية المتأنية تثمر تفكيرًا سليمًا.",
+                "options": [
+                    "صح",
+                    "خطأ"
+                ],
+                "ans": 0
+            }
+        ]
+    },
+    {
+        "id": "geniusthamarah",
+        "title": "تحدي العباقرة",
+        "type": "genius",
+        "desc": "دلالات الأفكار والألفاظ في نص ثمرة القراءة",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z\"></path></svg>",
+        "questions": [
+            {
+                "q": "ما دلالة تسمية الكراسة التي يدوّن فيها الطلاب خلاصة قراءاتهم بـ«ثمرة القراءة»؟",
+                "options": [
+                    "تصوير القراءة بالشجرة التي تُثمر فائدة ملموسة حين تُصاحَب بالتدوين والتفكير لا الاستهلاك العابر",
+                    "الدلالة على أن القراءة لا فائدة عملية منها",
+                    "بيان أن الكراسة مجرد إجراء شكلي بلا معنى",
+                    "نفي وجود أي علاقة بين القراءة والفائدة المرجوة منها"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة اختيار المعلم زيارة المكتبة وتكليف الطلاب بالتدوين بدل الاكتفاء بالشرح النظري؟",
+                "options": [
+                    "ترسيخ القراءة كممارسة عملية فعّالة لا مجرد نشاط نظري، وتعويد الطلاب على التفاعل المباشر مع المصادر",
+                    "الدلالة على أن الشرح النظري أفضل من الممارسة العملية دومًا",
+                    "بيان أن زيارة المكتبة نشاط ترفيهي فقط لا علاقة له بالتعلم",
+                    "نفي وجود أي فائدة تربوية من هذا النشاط"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة تكريم الطالب إبراهيم علنًا أمام زملائه؟",
+                "options": [
+                    "تحفيز باقي الطلاب على الاقتداء بنموذج ناجح في القراءة الواعية والتلخيص الجيد",
+                    "الدلالة على تفضيل المعلم لطالب دون آخرين بلا سبب",
+                    "بيان أن التكريم لا أثر له في تحفيز باقي الطلاب",
+                    "نفي وجود أي غاية تربوية من هذا التكريم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة اختيار إبراهيم عنوان «المعرفة بين العمق والسطحية» لموضوعه؟",
+                "options": [
+                    "يعكس وعيًا مبكرًا بإشكالية العصر الرقمي وهي الفرق بين تراكم المعلومات وتحقق الفهم العميق",
+                    "الدلالة على أن إبراهيم لا يفهم معنى العمق والسطحية",
+                    "بيان أن العنوان لا علاقة له بمضمون ما كتبه",
+                    "نفي وجود أي إشكالية حقيقية بين العمق والسطحية في المعرفة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة تشبيه تدفق المعلومات في العصر الحالي بـ«السيل الجارف»؟",
+                "options": [
+                    "تصوير كثرة المعلومات وسرعتها بما يشبه الخطر الطبيعي الذي قد يجرف كل شيء في طريقه دون تمييز",
+                    "الدلالة على أن المعلومات اليوم قليلة ونادرة",
+                    "بيان أن السيل هنا وصف إيجابي خالص بلا أي خطورة",
+                    "نفي وجود أي خطر مرتبط بكثرة المعلومات المتدفقة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة تعبير «وهم المعرفة» الذي حذّر منه الخبراء في نص إبراهيم؟",
+                "options": [
+                    "التنبيه إلى أن سهولة الوصول للمعلومة لا تعني بالضرورة فهمها أو استيعابها الحقيقي",
+                    "الدلالة على أن كل معلومة يحصل عليها الإنسان تُعدّ معرفة يقينية راسخة",
+                    "بيان أن الوهم هنا يقصد به اليقين التام بالمعرفة",
+                    "نفي وجود أي فرق بين امتلاك المعلومة وفهمها"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما العلاقة بين «السرعة في الوصول إلى المعلومة» و«وهم المعرفة» كما وردا في النص؟",
+                "options": [
+                    "أن السرعة قد تخلق شعورًا زائفًا بالعلم دون أن يواكبه تفكير أو تحليل حقيقي للمعلومة",
+                    "لا علاقة بين السرعة والشعور بالمعرفة الزائفة",
+                    "أن السرعة دائمًا مرادفة للفهم العميق والمعرفة الحقيقية",
+                    "أن وهم المعرفة ينشأ فقط من بطء الوصول إلى المعلومة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة وصف المعلومات المتناثرة على شبكات التواصل بأنها «مواد خام»؟",
+                "options": [
+                    "تصويرها بمادة أولية غير مكتملة تحتاج إلى معالجة عقلية (التحليل والربط) قبل أن تتحول إلى معرفة حقيقية",
+                    "الدلالة على أنها معرفة كاملة جاهزة للاستخدام دون أي تدقيق",
+                    "بيان أن هذه المعلومات عديمة القيمة تمامًا ولا فائدة منها إطلاقًا",
+                    "نفي وجود أي حاجة لمعالجة هذه المعلومات عقليًّا"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة تحذير النص من «الاعتماد المفرط على محركات البحث»؟",
+                "options": [
+                    "بيان أن الاتكال الكامل على الأدوات الرقمية دون إعمال العقل يُضعف القدرة على التفكير المستقل",
+                    "الدلالة على أن محركات البحث أداة ضارة يجب تجنبها كليًّا",
+                    "بيان أن الاعتماد على محركات البحث يقوّي دائمًا مهارة التفكير الناقد",
+                    "نفي وجود أي علاقة بين استخدام محركات البحث وقدرة العقل على التفكير"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما العلاقة بين «كسل العقول» و«فقدان مهارة التفكير الناقد» كما وردا معًا في النص؟",
+                "options": [
+                    "أن الكسل الفكري نتيجة مباشرة لسهولة الحصول على الإجابات الجاهزة، وهو ما يُضعف تدريجيًّا القدرة على التحليل والنقد",
+                    "لا علاقة بين كسل العقول ومهارة التفكير الناقد",
+                    "أن فقدان مهارة التفكير الناقد يؤدي إلى نشاط العقل لا كسله",
+                    "أن الكسل الفكري يقوّي القدرة على التحليل والنقد"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة وصف العقل الذي فقد مهارة النقد بأنه «صيد سهل للشائعات»؟",
+                "options": [
+                    "تصوير العقل غير الناقد بالفريسة الضعيفة التي يسهل استغلالها وخداعها بالمعلومات المضللة",
+                    "الدلالة على أن هذا العقل أكثر مناعة ضد الشائعات",
+                    "بيان أن الشائعات لا تؤثر إلا في العقول القوية الناقدة",
+                    "نفي وجود أي علاقة بين ضعف التفكير النقدي والانخداع بالشائعات"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة قول المعلم «القراءة ليست مجرد استهلاك للكلمات، بل هي بناء للوعي»؟",
+                "options": [
+                    "التمييز بين القراءة السطحية العابرة والقراءة الواعية التي تُنتج فهمًا وتحليلًا يُثري شخصية القارئ",
+                    "الدلالة على أن كل أنواع القراءة متساوية في قيمتها وأثرها",
+                    "بيان أن استهلاك الكلمات وبناء الوعي معنى واحد لا فرق بينهما",
+                    "نفي وجود أي أثر إيجابي حقيقي للقراءة على وعي الإنسان"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة استخدام كلمة «استهلاك» في وصف القراءة غير الواعية؟",
+                "options": [
+                    "تصوير القراءة السلبية بفعل استنزافي لا يضيف قيمة حقيقية، على عكس القراءة البنّاءة",
+                    "الدلالة على أن هذا النوع من القراءة هو الأكثر فائدة للقارئ",
+                    "بيان أن الاستهلاك هنا يعني الإنتاج والإبداع الفكري",
+                    "نفي وجود أي فرق بين القراءة الواعية والقراءة السطحية"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة وصف المعلم إنجاز إبراهيم بأنه «قدوة» لزملائه؟",
+                "options": [
+                    "الدعوة لتعميم نموذج القراءة الواعية والتفكير الناقد ليكون معيارًا يحتذيه بقية الطلاب",
+                    "الدلالة على أن إبراهيم استثناء لا يمكن لأحد آخر تحقيقه",
+                    "بيان أن التفوق في القراءة أمر لا يستحق التعميم على الآخرين",
+                    "نفي وجود أي قيمة تربوية في جعل إبراهيم قدوة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة ربط النص بين «حسن الاختيار» و«جودة التعبير» و«صحة التلخيص» كمعايير للتلخيص الجيد؟",
+                "options": [
+                    "بيان أن مهارة التلخيص الفعّال مركّبة تحتاج تكامل عدة قدرات فكرية ولغوية معًا لا مهارة واحدة فقط",
+                    "الدلالة على أن أيًّا من هذه المعايير كافٍ وحده لتحقيق تلخيص جيد",
+                    "بيان أن التلخيص الجيد لا يحتاج أي معايير محددة",
+                    "نفي وجود أي علاقة بين هذه المعايير وجودة التلخيص"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة اختتام النص برجاء المعلم أن يرى المزيد من الموضوعات الجيدة في كراريس الطلاب؟",
+                "options": [
+                    "تحويل التجربة الفردية (تفوق إبراهيم) إلى دافع جماعي مستمر لتحسين مستوى القراءة لدى كل الطلاب",
+                    "الدلالة على أن المعلم غير راضٍ عن أداء الطلاب جميعًا بلا استثناء",
+                    "بيان أن نجاح إبراهيم كافٍ ولا حاجة لتكرار التجربة مع الآخرين",
+                    "نفي وجود أي رغبة من المعلم في تحسين أداء بقية الطلاب"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما وجه الاتساق بين عنوان الوحدة «نحو تفكير سليم» وموضوع هذا الدرس عن ثمرة القراءة؟",
+                "options": [
+                    "اعتبار القراءة الواعية المتأنية إحدى الوسائل العملية الأساسية لبناء عادة التفكير السليم لدى المتعلم",
+                    "لا علاقة بين عنوان الوحدة وموضوع هذا الدرس",
+                    "بيان أن التفكير السليم لا صلة له بالقراءة إطلاقًا",
+                    "أن هذا الدرس يخرج تمامًا عن سياق موضوع الوحدة"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما دلالة كون هذا الدرس «نص استماع» يُفتتح بتمهيد يوضح أهمية التفكير السليم واستخدام العقل؟",
+                "options": [
+                    "ربط مهارة الاستماع الواعي نفسها بموضوع الدرس، فالطالب يُطبّق عمليًّا ما يدعو إليه النص من إعمال العقل أثناء الاستماع",
+                    "الدلالة على أن الاستماع لا علاقة له بإعمال العقل",
+                    "بيان أن نوع النص (استماع) لا صلة له بمضمونه",
+                    "نفي وجود أي ترابط بين مهارة الاستماع وموضوع التفكير السليم"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما القيمة التربوية التي يقدمها موقف المعلم في مكافأة إبراهيم بدل الاكتفاء بتصحيح الكراسة فقط؟",
+                "options": [
+                    "إبراز أن التحفيز الإيجابي والتقدير العلني وسيلة فعّالة لترسيخ سلوك القراءة الواعية بين الطلاب",
+                    "الدلالة على أن التصحيح وحده كافٍ ولا حاجة لأي تحفيز إضافي",
+                    "بيان أن مكافأة الطلاب المتفوقين ممارسة غير مجدية تربويًّا",
+                    "نفي وجود أي فائدة من التحفيز الإيجابي في العملية التعليمية"
+                ],
+                "ans": 0
+            },
+            {
+                "q": "ما القيمة الفكرية الكبرى التي يسعى النص لغرسها في نفوس الطلاب من خلال قصة إبراهيم؟",
+                "options": [
+                    "أن القراءة المثمرة الحقيقية تقوم على التدوين والتحليل والتفكير الناقد لا على مجرد التلقي السريع للمعلومات",
+                    "أن التلقي السريع للمعلومات هو أفضل وسيلة لبناء المعرفة",
+                    "أن القراءة لا علاقة لها بجودة التفكير لدى الإنسان",
+                    "أن التدوين والتحليل مضيعة للوقت لا طائل من ورائها"
+                ],
+                "ans": 0
+            }
+        ]
+    }
+];
+
+    // --- محرك الصوت للمؤثرات التفاعلية ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.1, 0.1); 
+        setTimeout(() => playTone(659.25, 'sine', 0.1, 0.1), 100); 
+        setTimeout(() => playTone(783.99, 'sine', 0.2, 0.15), 200); 
+        setTimeout(() => playTone(1046.50, 'sine', 0.4, 0.2), 300); 
+        triggerConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(300, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => playTone(200, 'sawtooth', 0.25, 0.15), 150);
+        
+        const qBox = document.querySelector('.question-box');
+        if(qBox) {
+            qBox.classList.remove('shake');
+            void qBox.offsetWidth; 
+            qBox.classList.add('shake');
+        }
+    }
+
+    // --- مؤثرات بصرية ---
+    function triggerConfetti() {
+        const colors = ['#f72585', '#4cc9f0', '#fee440', '#00f5d4', '#8b5cf6'];
+        for(let i=0; i<40; i++) {
+            let conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، بطل!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300); // وقت الانتقال للسؤال التالي
+    }
+
+    // --- متغيرات محرك اللعبة ---
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let geniusTimerInterval = null;
+    let wrongAnswers = []; // مصفوفة لتخزين الأخطاء
+
+    // --- التهيئة ---
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <div class="share-box">
+                    <h4>📲 أرسل نتيجتك إلى الأستاذ محمد</h4>
+                    <input type="text" id="student-name-input" class="share-name-input" placeholder="اكتب اسمك هنا أولًا">
+                    <div id="share-warning" class="share-warning">من فضلك اكتب اسمك أولًا قبل الإرسال ✋</div>
+                    <div>
+                        <button class="btn btn-share" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/></svg>
+                            إرسال النتيجة عبر واتساب
+                        </button>
+                    </div>
+                </div>
+                <button class="btn back-btn" style="font-size:1.1rem; padding:15px 30px; margin-top: 18px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    function sendResultToTeacher(score, total) {
+        const nameInput = document.getElementById('student-name-input');
+        const warning = document.getElementById('share-warning');
+        const name = nameInput.value.trim();
+        if (!name) {
+            warning.style.display = 'block';
+            nameInput.classList.add('shake');
+            nameInput.focus();
+            setTimeout(() => nameInput.classList.remove('shake'), 500);
+            return;
+        }
+        warning.style.display = 'none';
+        const gameTitle = currentGame ? currentGame.title : '';
+        const message =
+            `📚 نتيجة طالب - ${LESSON_NAME}\n` +
+            `👤 اسم الطالب: ${name}\n` +
+            `🎮 اللعبة: ${gameTitle}\n` +
+            `✅ النتيجة: ${score} من ${total}\n` +
+            `⭐ نسبة النجاح: ${Math.round((score/total)*100)}%`;
+        const url = `https://wa.me/201143270328?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = shuffleArray([...gameData.questions]);
+        qIndex = 0;
+        wrongAnswers = []; // تصفير قائمة الأخطاء
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // --- أنماط الألعاب ---
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        // ترتيب ثابت (صح يميناً وخطأ يساراً)
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 5. تحدي العباقرة (سؤال بعدّاد زمني)
+    function renderGenius(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const wrap = document.createElement('div');
+        wrap.className = 'genius-wrap';
+
+        const badge = document.createElement('div');
+        badge.className = 'genius-badge';
+        badge.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z"></path></svg> تحدي العباقرة`;
+
+        const timerTrack = document.createElement('div');
+        timerTrack.className = 'genius-timer-track';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerTrack.appendChild(timerBar);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.style.background = 'rgba(255,255,255,0.95)';
+        qBox.innerText = qData.q;
+
+        const optContainer = document.createElement('div');
+        optContainer.className = 'genius-options';
+
+        let isAnswered = false;
+        const TOTAL_TIME = 12000; // 12 ثانية لكل سؤال
+        let startTime = Date.now();
+
+        function finishQuestion(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(geniusTimerInterval);
+            if (!isCorrect) {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText || "انتهى الوقت!" });
+            }
+            showFeedback(isCorrect, () => { qIndex++; renderNextState(); });
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finishQuestion(true, opt);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finishQuestion(false, opt);
+                }
+            };
+            optContainer.appendChild(btn);
+        });
+
+        wrap.appendChild(badge);
+        wrap.appendChild(timerTrack);
+        container.appendChild(wrap);
+        container.appendChild(qBox);
+        container.appendChild(optContainer);
+
+        geniusTimerInterval = setInterval(() => {
+            if (isAnswered) { clearInterval(geniusTimerInterval); return; }
+            const elapsed = Date.now() - startTime;
+            const pct = Math.max(0, 100 - (elapsed / TOTAL_TIME) * 100);
+            timerBar.style.width = pct + '%';
+            if (elapsed >= TOTAL_TIME) {
+                clearInterval(geniusTimerInterval);
+                finishQuestion(false, null);
+            }
+        }, 80);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            let speed = 0.95 + Math.random() * 0.65; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 30);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 20);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك لاصطيادها!`;
+        container.appendChild(hint);
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>
