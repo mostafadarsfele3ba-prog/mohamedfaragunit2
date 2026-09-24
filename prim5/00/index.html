@@ -1,0 +1,1243 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>درس الاستماع: جسر التواصل - الصف الخامس الابتدائي</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14532d;      
+            --primary-light: #22c55e; 
+            --secondary: #166534;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #65a30d;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* --- الهيدر الرئيسي --- */
+        .header-main {
+            background: linear-gradient(135deg, #052e16, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #dcfce7;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(2.5rem, 10vw, 4.5rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #86efac, #65a30d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.1;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #fdf2f8; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* --- الأزرار --- */
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        /* --- الشاشة الرئيسية --- */
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(99, 102, 241, 0.2); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #14532d; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.4rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 1rem; color: #64748b; font-weight: 600;}
+
+        /* --- شاشة اللعب --- */
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #22c55e; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 800;
+            color: #14532d;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #166534;
+            line-height: 1.6;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* MCQ Style */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1.1rem, 3.5vw, 1.4rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        /* True/False Style */
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        /* Bubbles Style */
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #052e16, #14532d);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #22c55e; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(224,231,255,0.9));
+            color: #14532d;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        /* Shooting Style */
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23e0fbfc" width="100%" height="100%"/><circle fill="%23bae6fd" cx="20%" cy="30%" r="50"/><circle fill="%23bae6fd" cx="80%" cy="60%" r="70"/><circle fill="%23bae6fd" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #22c55e; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.95rem, 3vw, 1.15rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #fffbeb; }
+
+        /* Modal Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        /* Summary Errors Scrolling */
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* الفوتر (Footer) */
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 25px; left: 25px;
+            background: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100; transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); box-shadow: 0 12px 20px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: currentColor; }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
+        /* Genius Challenge Style */
+        .genius-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #15803d, #166534); color: white;
+            padding: 8px 20px; border-radius: 20px; font-weight: 800; font-size: 1.1rem;
+            margin-bottom: 15px; box-shadow: 0 4px 10px rgba(79,70,229,0.35);
+        }
+        .genius-timer-wrap {
+            background: #e2e8f0; border-radius: 20px; height: 18px; overflow: hidden;
+            margin-bottom: 20px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); border: 2px solid white;
+        }
+        .genius-timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+            transition: width 0.1s linear;
+        }
+
+        /* Send Result to Teacher */
+        .send-result-box {
+            margin-top: 30px; padding: 25px; background: #f0fdf4;
+            border: 2px dashed #25d366; border-radius: 16px; text-align: center;
+        }
+        .send-result-box h3 { color: #128c7e; margin-bottom: 15px; font-size: 1.3rem; }
+        .send-result-box input {
+            width: 100%; max-width: 320px; padding: 14px 15px; border-radius: 12px;
+            border: 2px solid #cbd5e1; font-size: 1.15rem; font-family: 'Cairo', Tahoma, sans-serif;
+            text-align: center; margin-bottom: 18px; color: var(--dark);
+        }
+        .send-result-box input:focus { outline: none; border-color: #25d366; }
+        .btn-whatsapp { background: linear-gradient(to bottom, #25d366, #128c7e); border-bottom-color: #0e6b5f; }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر مع اللوجو -->
+    <header class="header-main" id="main-header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <!-- اللوجو (على اليمين) -->
+                <img src="logo.png" onerror="this.onerror=null; this.src='logo.jpg';" alt="شعار الأستاذ محمد فرج منصور" style="width: 260px; height: 260px; border-radius: 30px; border: 4px solid var(--warning); box-shadow: 0 8px 16px rgba(0,0,0,0.4); background-color: white; object-fit: cover; flex-shrink: 0;">
+                
+                <!-- النصوص -->
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        درس 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لعبة
+                    </h1>
+                    <h1 class="title-line2">مع الأستاذ محمد فرج منصور</h1>
+                    <h2>الصف الخامس الابتدائي - الوحدة الثانية - جسر التواصل</h2>
+                    <p style="margin-top: 10px;">الاستماع</p>
+                </div>
+            </div>
+        </div>
+        <!-- تموجات زخرفية -->
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f0f4f8" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid">
+            <!-- سيتم حقن البطاقات هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 25</span>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- سيتم حقن الأسئلة هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات السريعة -->
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | الصف الخامس الابتدائي - لغة عربية</p>
+        <p class="designer">الأستاذ / محمد فرج منصور</p>
+    </footer>
+
+    <!-- زر الواتساب -->
+    <a href="https://wa.me/201143270328" class="whatsapp-float" target="_blank" title="تواصل معنا">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/>
+        </svg>
+    </a>
+
+<script>
+    const LESSON_TITLE = "الاستماع: جسر التواصل";
+    const TEACHER_WHATSAPP_NUMBER = "201143270328";
+    const allGamesData = [
+        {
+            id: "vocab0", title: "فهم النص", type: "mcq", desc: "فهم نص الاستماع واستخراج الأفكار",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+            questions: [
+                { q: "هل يمكن أن يكون الصمت شكلًا من أشكال التواصل بحسب النص؟", options: ["نعم، أحيانًا يعبّر عن مشاعر صاحبه", "لا، الصمت ليس تواصلًا أبدًا", "الصمت يعني الغضب دائمًا", "لم يذكر النص ذلك"], ans: 0 },
+                { q: "ماذا يصعب على الناس بدون التواصل بحسب النص؟", options: ["أن يتعاونوا معًا وينجزوا أعمالهم المشتركة", "أن يناموا مبكرًا", "أن يسافروا", "أن يتعلموا القراءة"], ans: 0 },
+                { q: "ماذا حدث لوسائل التواصل مع تقدم العلم؟", options: ["تطورت وأصبحت سهلة وسريعة", "لم تتغير", "أصبحت أصعب", "اختفت تمامًا"], ans: 0 },
+                { q: "بحسب النص، مع أي شخص وفي أي وقت أصبح التواصل ممكنًا؟", options: ["مع أي شخص في أي وقت ومن أي مكان في العالم", "مع الجيران فقط", "في أوقات محددة فقط", "داخل المدينة فقط"], ans: 0 },
+                { q: "ماذا يتوقع النص أن يظهر في المستقبل؟", options: ["وسائل تواصل جديدة أسرع وأكثر فعالية", "توقف كل وسائل التواصل", "عودة الوسائل القديمة فقط", "لا شيء جديد"], ans: 0 },
+                { q: "ما الهدف الأهم من عملية التواصل بحسب خاتمة النص؟", options: ["فهم مشاعر الآخر وفكره والتعبير عن فكرنا بطريقة بنّاءة", "الحصول على المال", "الشهرة بين الناس", "إثبات التفوق على الآخرين"], ans: 0 },
+                { q: "إلى ماذا يؤدي التواصل الجيد بين البشر بحسب خاتمة النص؟", options: ["إلى التفاهم والاحترام بين البشر", "إلى مزيد من الخلافات", "إلى العزلة", "لا نتيجة له"], ans: 0 },
+                { q: "ما الذي يساعد التعبير الجيد عن أفكارنا في بنائه بحسب النص؟", options: ["علاقات قوية بين الناس", "حواجز بين الناس", "خلافات دائمة", "لا شيء"], ans: 0 },
+                { q: "ما الفكرة الرئيسة التي يدور حولها نص (جسر التواصل)؟", options: ["أهمية التواصل وتطوره وهدفه الأسمى بين البشر", "وصف رحلة سياحية", "قصة خيالية عن الفضاء", "تاريخ اختراع الهاتف"], ans: 0 },
+                { q: "ماذا يعني وصف النص للتواصل بأنه (جسر)؟", options: ["أنه يربط بين الناس ويقرّب بينهم", "أنه شيء مادي ملموس فقط", "أنه عائق يفصل بين الناس", "لا معنى خاصًا له"], ans: 0 },
+                { q: "هل التواصل أمر ثانوي أم أساسي في حياتنا اليومية بحسب النص؟", options: ["أساسي، فهو أساس حياتنا اليومية", "ثانوي لا قيمة كبيرة له", "غير مهم إطلاقًا", "النص لم يوضح ذلك"], ans: 0 },
+                { q: "ما الذي يجعل عملية التواصل سهلة وسريعة بحسب النص؟", options: ["تقدّم العلم وتطور وسائل التواصل", "قلة عدد السكان", "البعد عن التكنولوجيا", "لا شيء مذكور"], ans: 0 },
+                { q: "ما نوع النص من حيث طريقة تقديمه؟", options: ["نص استماع", "نص شعري", "حوار مسرحي", "رسالة شخصية"], ans: 0 },
+                { q: "ما عنوان نص الاستماع؟", options: ["جسر التواصل", "لغة النصر", "الرسالة عبر الزمن", "أخي الإنسان"], ans: 0 },
+                { q: "بم يبدأ النص عن أهمية التواصل؟", options: ["بسؤال: ماذا لو كان كل إنسان يعيش في جزيرة منفردة؟", "بقصة عن رحلة", "بوصف مكان جميل", "بحوار بين صديقين"], ans: 0 },
+                { q: "هل يستطيع الإنسان أن يعيش بلا أهل أو أصدقاء أو زملاء؟", options: ["لا، فالإنسان خُلق ليعيش في مجتمع", "نعم، بسهولة تامة", "نعم، لكن بصعوبة بسيطة", "النص لم يجب عن ذلك"], ans: 0 },
+                { q: "لماذا خُلق الإنسان ليعيش في مجتمع بحسب النص؟", options: ["ليتبادل الفكر والمشاعر مع الآخرين", "ليعمل فقط دون تواصل", "ليكسب المال", "لا سبب مذكور"], ans: 0 },
+                { q: "بم وصف النص التواصل بالنسبة للناس؟", options: ["الجسر الذي يربط بين الناس", "عائق يمنع التفاهم", "أمر ثانوي لا أهمية له", "وسيلة للتباعد"], ans: 0 },
+                { q: "من خلال ماذا نعبّر عن أنفسنا ونتفهم الآخرين بحسب النص؟", options: ["من خلال التواصل", "من خلال الصمت الدائم", "من خلال العزلة", "من خلال المال"], ans: 0 },
+                { q: "ما أشكال التواصل التي ذكرها النص؟", options: ["الكلمات والإشارات وتعبيرات الوجه", "الكلمات فقط", "الإشارات فقط", "الصمت فقط"], ans: 0 }
+            ]
+        },
+        {
+            id: "story0", title: "رحلة الفهم", type: "bubbles", desc: "لعبة الفقاعات المتساقطة",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>`,
+            questions: [
+                { q: "بأي طريقة ينبغي أن نعبّر عن أفكارنا بحسب النص؟", options: ["بطريقة تساعد في بناء علاقات قوية", "بطريقة تثير الخلاف", "بطريقة غامضة دائمًا", "لا طريقة محددة"], ans: 0 },
+                { q: "إلام يؤدي التواصل الجيد بين البشر في خاتمة النص؟", options: ["إلى التفاهم والاحترام", "إلى مزيد من سوء الفهم", "إلى العزلة التامة", "لا نتيجة مذكورة"], ans: 0 },
+                { q: "ما نوع الأسلوب الذي استخدمه النص في فقرته الأولى؟", options: ["أسلوب استفهامي يبدأ بسؤال افتراضي", "أسلوب سردي قصصي", "أسلوب حواري بين شخصين", "أسلوب شعري موزون"], ans: 0 },
+                { q: "ما وظيفة التواصل الأساسية بحسب مطلع النص؟", options: ["أنه أساس حياتنا اليومية", "أنه أمر كمالي غير ضروري", "أنه يخص فئة معينة من الناس فقط", "لم يوضح النص وظيفته"], ans: 0 },
+                { q: "كيف وصف النص العلاقة بين التواصل والتعاون؟", options: ["بدون تواصل يصعب التعاون وإنجاز الأعمال المشتركة", "لا علاقة بينهما", "التواصل يعيق التعاون", "التعاون لا يحتاج تواصلًا"], ans: 0 },
+                { q: "ما الذي يجعل النص يصف التواصل بأنه (جسر) تحديدًا؟", options: ["لأنه يصل بين الناس كما يصل الجسر بين الضفتين", "لأنه مصنوع من حجارة", "لأنه يفصل الأماكن عن بعضها", "لا سبب واضحًا"], ans: 0 },
+                { q: "ما القيمة الإنسانية التي يبرزها النص في خاتمته؟", options: ["الاحترام والتفاهم المتبادل بين البشر", "التنافس والفوز", "جمع المال", "السفر حول العالم"], ans: 0 },
+                { q: "بم يبدأ عنوان الوحدة التي ينتمي إليها هذا النص؟", options: ["فنّ التواصل", "فنّ الرسم", "فنّ الطهي", "فنّ الزراعة"], ans: 0 },
+                { q: "ما طبيعة هذا النص من حيث نوعه الأدبي؟", options: ["نص معلوماتي يُقدَّم استماعًا", "قصيدة شعرية", "قصة خيالية", "مسرحية"], ans: 0 },
+                { q: "بم بدأ النص حديثه عن أهمية التواصل؟", options: ["بسؤال افتراضي عن إنسان يعيش وحده في جزيرة", "بقصة عن حرب", "بوصف مدينة قديمة", "بحوار بين معلم وتلميذ"], ans: 0 },
+                { q: "لماذا لا يستطيع الإنسان العيش بمفرده بحسب النص؟", options: ["لأنه خُلق ليعيش في مجتمع يتبادل فيه الفكر والمشاعر", "لأنه ضعيف جسديًا", "لأنه يحتاج للمال فقط", "لأنه يخاف الوحدة فقط"], ans: 0 },
+                { q: "ما الذي يمثله التواصل بين الناس بحسب تشبيه النص؟", options: ["جسر يربط بينهم", "جدار يفصل بينهم", "طريق مسدود", "لا شيء يربطهم"], ans: 0 },
+                { q: "من خلال ماذا نعبّر عن أنفسنا ونتفهم الآخرين؟", options: ["من خلال التواصل", "من خلال الصمت الدائم فقط", "من خلال الابتعاد", "من خلال المنافسة"], ans: 0 },
+                { q: "عدّد النص بعض أشكال التواصل، فما هي؟", options: ["الكلمات والإشارات وتعبيرات الوجه وحتى الصمت أحيانًا", "الكلمات فقط لا غير", "الكتابة فقط", "الرسم فقط"], ans: 0 },
+                { q: "متى يمكن أن يكون الصمت شكلًا من أشكال التواصل؟", options: ["عندما يعبّر عن مشاعر صاحبه", "لا يكون الصمت تواصلًا أبدًا", "فقط في الغضب", "فقط في الفرح"], ans: 0 },
+                { q: "ما الذي يصعب دون تواصل بين الناس؟", options: ["التعاون معًا وإنجاز الأعمال المشتركة", "النوم والراحة", "السفر بمفردهم", "قراءة الكتب"], ans: 0 },
+                { q: "ما الذي أدى إلى تطور وسائل التواصل بحسب النص؟", options: ["تقدّم العلم", "قلة عدد السكان", "الحروب", "لم يذكر النص سببًا"], ans: 0 },
+                { q: "ما أثر تطور وسائل التواصل على عملية التواصل نفسها؟", options: ["جعلها سهلة وسريعة مع أي شخص وفي أي وقت ومكان", "جعلها أصعب وأبطأ", "لم يتغير شيء", "أوقفها تمامًا"], ans: 0 },
+                { q: "ما توقع النص لمستقبل وسائل التواصل؟", options: ["ظهور وسائل جديدة أسرع وأكثر فعالية", "اختفاء التواصل نهائيًا", "بقاء الوسائل كما هي دون تغيير", "العودة للوسائل القديمة فقط"], ans: 0 },
+                { q: "مهما تطورت وسائل التواصل، ما الذي يظل ثابتًا بحسب خاتمة النص؟", options: ["الهدف الأهم: فهم مشاعر الآخر وفكره", "شكل الوسيلة المستخدمة", "سرعة الوصول فقط", "لا شيء يبقى ثابتًا"], ans: 0 }
+            ]
+        },
+        {
+            id: "tf0", title: "صح أم خطأ", type: "true_false", desc: "هل العبارة صحيحة أم خاطئة؟",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
+            questions: [
+                { q: "الصمت لا يمكن أن يكون شكلًا من أشكال التواصل بأي حال.", options: ["صح", "خطأ"], ans: 1 },
+                { q: "بدون التواصل يسهل على الناس التعاون وإنجاز الأعمال المشتركة.", options: ["صح", "خطأ"], ans: 1 },
+                { q: "تطورت وسائل التواصل مع تقدّم العلم.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "أصبح التواصل ممكنًا مع أي شخص في أي وقت ومن أي مكان في العالم.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "يتوقع النص ظهور وسائل تواصل جديدة أسرع وأكثر فعالية في المستقبل.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "الهدف الأهم من عملية التواصل بحسب النص هو فهم مشاعر الآخر وفكره.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "يؤدي التواصل الجيد إلى التفاهم والاحترام بين البشر.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "اعتبر النص التواصل أمرًا ثانويًا لا علاقة له بحياتنا اليومية.", options: ["صح", "خطأ"], ans: 1 },
+                { q: "من خلال التواصل نعبّر عن أنفسنا ونتفهم الآخرين بحسب النص.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "بدأ النص بسؤال افتراضي عن إنسان يعيش في جزيرة منفردة.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "التعبير عن أفكارنا بطريقة بنّاءة يساعد في بناء علاقات قوية بحسب النص.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "النص يصف التواصل بأنه أساس حياتنا اليومية.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "بحسب النص، ستختفي وسائل التواصل تمامًا في المستقبل.", options: ["صح", "خطأ"], ans: 1 },
+                { q: "ينتمي هذا النص إلى الوحدة الثانية (فنّ التواصل).", options: ["صح", "خطأ"], ans: 0 },
+                { q: "هذا النص هو نص استماع من الكتاب المدرسي.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "عنوان نص الاستماع هو (جسر التواصل).", options: ["صح", "خطأ"], ans: 0 },
+                { q: "يرى النص أن الإنسان يستطيع العيش بمفرده بسهولة دون أهل أو أصدقاء.", options: ["صح", "خطأ"], ans: 1 },
+                { q: "خُلق الإنسان ليعيش في مجتمع يتبادل فيه الفكر والمشاعر مع الآخرين.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "وصف النص التواصل بأنه الجسر الذي يربط بين الناس.", options: ["صح", "خطأ"], ans: 0 },
+                { q: "من أشكال التواصل التي ذكرها النص: الكلمات والإشارات وتعبيرات الوجه.", options: ["صح", "خطأ"], ans: 0 }
+            ]
+        },
+        {
+            id: "shoot0", title: "التنشين والاصطياد", type: "shooting", desc: "لعبة التنشين والاصطياد",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`,
+            questions: [
+                { q: "ما الذي يساعد بناء العلاقات القوية؟", options: ["التعبير البنّاء عن الأفكار", "الصمت الدائم", "الخلاف المستمر", "لا شيء"], ans: 0 },
+                { q: "الفكرة الرئيسة للنص؟", options: ["أهمية التواصل وتطوره وهدفه", "رحلة سياحية", "قصة خيالية", "تاريخ الهاتف"], ans: 0 },
+                { q: "ماذا يعني وصف التواصل بأنه (جسر)؟", options: ["يربط بين الناس ويقرّبهم", "شيء مادي فقط", "عائق يفصل الناس", "لا معنى خاص"], ans: 0 },
+                { q: "هل التواصل أساسي أم ثانوي بحسب النص؟", options: ["أساسي", "ثانوي", "غير مهم", "غير موضح"], ans: 0 },
+                { q: "ما الذي جعل التواصل سهلًا وسريعًا؟", options: ["تقدّم العلم", "قلة السكان", "البعد عن التكنولوجيا", "لا شيء"], ans: 0 },
+                { q: "نوع هذا النص؟", options: ["نص استماع", "نص شعري", "حوار مسرحي", "رسالة"], ans: 0 },
+                { q: "اسم الوحدة التي ينتمي إليها النص؟", options: ["فنّ التواصل", "فنّ الرسم", "فنّ الطهي", "فنّ الزراعة"], ans: 0 },
+                { q: "عنوان نص الاستماع؟", options: ["جسر التواصل", "لغة النصر", "الرسالة عبر الزمن", "أخي الإنسان"], ans: 0 },
+                { q: "بم بدأ النص؟", options: ["سؤال عن إنسان يعيش في جزيرة منفردة", "قصة عن رحلة", "وصف مكان", "حوار بين صديقين"], ans: 0 },
+                { q: "هل يستطيع الإنسان العيش وحده بحسب النص؟", options: ["لا", "نعم بسهولة", "نعم بصعوبة", "لم يُجب النص"], ans: 0 },
+                { q: "لماذا خُلق الإنسان ليعيش في مجتمع؟", options: ["ليتبادل الفكر والمشاعر", "ليعمل فقط", "ليكسب المال", "لا سبب"], ans: 0 },
+                { q: "بم وُصف التواصل في النص؟", options: ["الجسر الذي يربط بين الناس", "عائق", "أمر ثانوي", "وسيلة تباعد"], ans: 0 },
+                { q: "ما أشكال التواصل المذكورة؟", options: ["الكلمات والإشارات وتعبيرات الوجه", "الكلمات فقط", "الإشارات فقط", "الصمت فقط"], ans: 0 },
+                { q: "هل الصمت شكل من أشكال التواصل أحيانًا؟", options: ["نعم", "لا أبدًا", "لا يوجد رأي", "غير مذكور"], ans: 0 },
+                { q: "ماذا يصعب بدون تواصل؟", options: ["التعاون وإنجاز الأعمال المشتركة", "النوم", "السفر", "القراءة"], ans: 0 },
+                { q: "ماذا حدث لوسائل التواصل مع تقدم العلم؟", options: ["تطورت وأصبحت أسهل وأسرع", "لم تتغير", "أصبحت أصعب", "اختفت"], ans: 0 },
+                { q: "مع من ومتى أصبح التواصل ممكنًا؟", options: ["مع أي شخص في أي وقت ومكان", "مع الجيران فقط", "في أوقات محددة", "داخل المدينة فقط"], ans: 0 },
+                { q: "ماذا يتوقع النص للمستقبل؟", options: ["وسائل تواصل أسرع وأكثر فعالية", "توقف كل الوسائل", "عودة الوسائل القديمة", "لا جديد"], ans: 0 },
+                { q: "ما الهدف الأهم من التواصل؟", options: ["فهم مشاعر الآخر والتعبير البنّاء", "المال", "الشهرة", "التفوق على الآخرين"], ans: 0 },
+                { q: "إلام يؤدي التواصل الجيد؟", options: ["التفاهم والاحترام", "الخلافات", "العزلة", "لا نتيجة"], ans: 0 }
+            ]
+        },
+        {
+            id: "genius0", title: "تحدي العباقرة", type: "genius", desc: "أسئلة سريعة بوقت محدود لكل سؤال",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.4 1.2 4.5 3 5.7V17h8v-2.3c1.8-1.2 3-3.3 3-5.7a7 7 0 0 0-7-7z"></path></svg>`,
+            questions: [
+                { q: "توقع النص للمستقبل؟", options: ["وسائل أسرع وأكثر فعالية", "توقف الوسائل", "عودة القديم", "لا جديد"], ans: 0 },
+                { q: "الهدف الأهم من التواصل؟", options: ["فهم مشاعر الآخر", "المال", "الشهرة", "التفوق"], ans: 0 },
+                { q: "نتيجة التواصل الجيد؟", options: ["التفاهم والاحترام", "الخلاف", "العزلة", "لا نتيجة"], ans: 0 },
+                { q: "ما يساعد بناء العلاقات القوية؟", options: ["التعبير البنّاء", "الصمت الدائم", "الخلاف", "لا شيء"], ans: 0 },
+                { q: "الفكرة الرئيسة؟", options: ["أهمية التواصل وتطوره", "رحلة", "خيال علمي", "تاريخ الهاتف"], ans: 0 },
+                { q: "لماذا وُصف التواصل بـ(جسر)؟", options: ["يربط بين الناس", "شيء مادي فقط", "يفصل الناس", "لا معنى"], ans: 0 },
+                { q: "هل التواصل أساسي؟", options: ["نعم", "لا", "غير مهم", "غير موضح"], ans: 0 },
+                { q: "سبب سهولة التواصل اليوم؟", options: ["تقدّم العلم", "قلة السكان", "البعد عن التكنولوجيا", "لا شيء"], ans: 0 },
+                { q: "نوع النص؟", options: ["نص استماع", "شعر", "حوار", "رسالة"], ans: 0 },
+                { q: "اسم الوحدة؟", options: ["فنّ التواصل", "فنّ الرسم", "فنّ الطهي", "فنّ الزراعة"], ans: 0 },
+                { q: "بم بدأ النص؟", options: ["سؤال افتراضي", "قصة", "وصف", "حوار"], ans: 0 },
+                { q: "عنوان النص؟", options: ["جسر التواصل", "لغة النصر", "الرسالة عبر الزمن", "أخي الإنسان"], ans: 0 },
+                { q: "هل يعيش الإنسان بمفرده بسهولة؟", options: ["لا", "نعم", "أحيانًا", "غير مذكور"], ans: 0 },
+                { q: "لماذا خُلق الإنسان للمجتمع؟", options: ["ليتبادل الفكر والمشاعر", "ليعمل فقط", "ليكسب المال", "لا سبب"], ans: 0 },
+                { q: "وصف التواصل في النص؟", options: ["جسر يربط الناس", "عائق", "أمر ثانوي", "تباعد"], ans: 0 },
+                { q: "أشكال التواصل؟", options: ["كلمات، إشارات، تعبيرات وجه", "كلمات فقط", "إشارات فقط", "صمت فقط"], ans: 0 },
+                { q: "هل الصمت تواصل أحيانًا؟", options: ["نعم", "لا", "لا يوجد رأي", "غير مذكور"], ans: 0 },
+                { q: "بدون تواصل يصعب ماذا؟", options: ["التعاون", "النوم", "السفر", "القراءة"], ans: 0 },
+                { q: "أثر تقدم العلم على التواصل؟", options: ["أصبح أسهل وأسرع", "لم يتغير", "أصبح أصعب", "اختفى"], ans: 0 },
+                { q: "التواصل اليوم ممكن مع من؟", options: ["أي شخص في أي وقت ومكان", "الجيران فقط", "أوقات محددة", "داخل المدينة فقط"], ans: 0 }
+            ]
+        }
+    ];
+
+    // --- محرك الصوت للمؤثرات التفاعلية ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.1, 0.1); 
+        setTimeout(() => playTone(659.25, 'sine', 0.1, 0.1), 100); 
+        setTimeout(() => playTone(783.99, 'sine', 0.2, 0.15), 200); 
+        setTimeout(() => playTone(1046.50, 'sine', 0.4, 0.2), 300); 
+        triggerConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(300, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => playTone(200, 'sawtooth', 0.25, 0.15), 150);
+        
+        const qBox = document.querySelector('.question-box');
+        if(qBox) {
+            qBox.classList.remove('shake');
+            void qBox.offsetWidth; 
+            qBox.classList.add('shake');
+        }
+    }
+
+    // --- مؤثرات بصرية ---
+    function triggerConfetti() {
+        const colors = ['#f72585', '#4cc9f0', '#fee440', '#00f5d4', '#8b5cf6'];
+        for(let i=0; i<40; i++) {
+            let conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، بطل!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300); // وقت الانتقال للسؤال التالي
+    }
+
+    // --- متغيرات محرك اللعبة ---
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let wrongAnswers = []; // مصفوفة لتخزين الأخطاء
+
+    // --- التهيئة ---
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <div class="send-result-box">
+                    <h3>📲 أرسل نتيجتك لأستاذ محمد فرج</h3>
+                    <input type="text" id="student-name-input" placeholder="اكتب اسمك هنا" />
+                    <br>
+                    <button class="btn btn-whatsapp" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/></svg>
+                        إرسال النتيجة على واتساب
+                    </button>
+                </div>
+                <button class="btn" style="font-size:1.2rem; padding:15px 30px; margin-top: 20px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = shuffleArray([...gameData.questions]);
+        qIndex = 0;
+        wrongAnswers = []; // تصفير قائمة الأخطاء
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // --- أنماط الألعاب ---
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        // ترتيب ثابت (صح يميناً وخطأ يساراً)
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            let speed = 0.42 + Math.random() * 0.4; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 30);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 1.0 + 0.8) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 30);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 20);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 20);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك لاصطيادها!`;
+        container.appendChild(hint);
+    }
+
+    // 5. تحدي العباقرة (سؤال بوقت محدود)
+    function renderGenius(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const badge = document.createElement('div');
+        badge.className = 'genius-badge';
+        badge.innerHTML = `🧠 تحدي العباقرة - أجب بسرعة!`;
+
+        const timerWrap = document.createElement('div');
+        timerWrap.className = 'genius-timer-wrap';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerWrap.appendChild(timerBar);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+
+        let isAnswered = false;
+        let timeLeft = 100;
+        const duration = 10000; // 10 ثوانٍ لكل سؤال
+        const stepMs = 100;
+        const decrement = 100 / (duration / stepMs);
+
+        function finish(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(animInterval);
+            if (!isCorrect) {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText });
+            }
+            showFeedback(isCorrect, () => { qIndex++; renderNextState(); });
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finish(true, opt);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finish(false, opt);
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        container.appendChild(badge);
+        container.appendChild(timerWrap);
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            timeLeft -= decrement;
+            if (timeLeft <= 0) {
+                timeLeft = 0;
+                timerBar.style.width = '0%';
+                finish(false, "انتهى الوقت");
+                return;
+            }
+            timerBar.style.width = timeLeft + '%';
+        }, stepMs);
+    }
+
+    // --- إرسال النتيجة للأستاذ محمد فرج منصور عبر واتساب ---
+    function sendResultToTeacher(score, total) {
+        const nameInput = document.getElementById('student-name-input');
+        const name = nameInput ? nameInput.value.trim() : '';
+        if (!name) {
+            alert('من فضلك اكتب اسمك أولاً قبل إرسال النتيجة 🙏');
+            if (nameInput) nameInput.focus();
+            return;
+        }
+        const gameTitle = currentGame ? currentGame.title : '';
+        const message = `مرحباً أستاذ محمد فرج 👋\nالاسم: ${name}\nالدرس: ${LESSON_TITLE}\nاللعبة: ${gameTitle}\nالنتيجة: ${score} من ${total}`;
+        const url = `https://wa.me/${TEACHER_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>
