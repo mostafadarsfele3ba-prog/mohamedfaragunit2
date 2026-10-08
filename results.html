@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة نتائج الطلاب - الأستاذ محمد فرج منصور</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g9:#14532d;--g7:#15803d;--g6:#16a34a;--g5:#22c55e;--g1:#dcfce7;--g0:#f0fdf4;
+  --ink:#0f172a;--mut:#64748b;--line:#e2e8f0;--card:#ffffff;--bg:#f4f7f5;
+  --red:#dc2626;--red1:#fee2e2;--amb:#d97706;--amb1:#fef3c7;--blu:#2563eb;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Cairo',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font-family:inherit}
+.hide{display:none!important}
+
+/* login */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(circle at 20% 10%,#22c55e33,transparent 40%),linear-gradient(160deg,var(--g9),var(--g7))}
+.lbox{background:#fff;border-radius:22px;padding:30px 26px;max-width:400px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.35)}
+.lbox .ic{width:72px;height:72px;border-radius:20px;background:var(--g1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:36px}
+.lbox h1{margin:0;font-size:1.45rem;color:var(--g9)}
+.lbox p{margin:6px 0 18px;color:var(--mut)}
+.lbox input{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:12px;font-size:1.05rem;text-align:center;outline:none}
+.lbox input:focus{border-color:var(--g6)}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-size:1rem;font-weight:700;cursor:pointer;background:var(--g6);color:#fff;transition:.15s}
+.btn:hover{background:var(--g7)}
+.btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.sec:hover{background:var(--g0)}
+.lbox .btn{width:100%;margin-top:12px;padding:14px}
+#lerr{color:var(--red);font-weight:700;margin-top:10px;min-height:1.4em}
+
+/* app */
+header{background:linear-gradient(135deg,var(--g9),var(--g7));color:#fff;padding:18px 20px 70px}
+.hin{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:1.4rem}
+header .sub{opacity:.85;font-size:.95rem}
+.hbtns{display:flex;gap:8px;flex-wrap:wrap}
+.hbtns .btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:9px 14px;font-size:.92rem}
+.hbtns .btn:hover{background:rgba(255,255,255,.28)}
+main{max-width:1200px;margin:-52px auto 40px;padding:0 16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:var(--card);border-radius:18px;padding:16px 18px;box-shadow:0 4px 16px rgba(15,23,42,.06)}
+.kpi .l{color:var(--mut);font-size:.9rem;font-weight:600}
+.kpi .v{font-size:1.9rem;font-weight:800;color:var(--g9);line-height:1.3}
+.kpi .s{color:var(--mut);font-size:.82rem}
+.filters{background:var(--card);border-radius:18px;padding:14px;margin-top:14px;display:grid;grid-template-columns:2fr 1.3fr 1.6fr 1.3fr 1fr;gap:10px;box-shadow:0 4px 16px rgba(15,23,42,.06)}
+.filters input,.filters select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:.95rem;background:#fff;outline:none}
+.filters input:focus,.filters select:focus{border-color:var(--g6)}
+.tabs{display:flex;gap:6px;margin:18px 0 10px;flex-wrap:wrap}
+.tab{border:0;background:#fff;color:var(--mut);padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;font-size:.95rem;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.tab.on{background:var(--g7);color:#fff}
+.card{background:var(--card);border-radius:18px;box-shadow:0 4px 16px rgba(15,23,42,.06);overflow:hidden}
+.card h3{margin:0;padding:14px 18px;font-size:1.05rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.card h3 small{color:var(--mut);font-weight:600}
+.tw{overflow:auto;max-height:620px}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th{position:sticky;top:0;background:var(--g0);color:var(--g9);text-align:right;padding:10px 12px;font-weight:700;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:1px solid var(--line)}
+th:hover{background:var(--g1)}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:hover td{background:#fafcfb}
+td.n{white-space:nowrap;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-weight:800;font-size:.85rem;white-space:nowrap}
+.p-hi{background:var(--g1);color:var(--g7)}
+.p-md{background:var(--amb1);color:var(--amb)}
+.p-lo{background:var(--red1);color:var(--red)}
+.who{font-weight:700;cursor:pointer;color:var(--ink)}
+.who:hover{color:var(--g7);text-decoration:underline}
+.muted{color:var(--mut);font-size:.85rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bars{padding:10px 18px 16px}
+.bar{display:grid;grid-template-columns:minmax(120px,38%) 1fr 54px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+.bar:last-child{border-bottom:0}
+.bar .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track{height:12px;background:#eef2f0;border-radius:99px;overflow:hidden}
+.fill{height:100%;border-radius:99px}
+.bar .pc{font-weight:800;text-align:left;font-variant-numeric:tabular-nums}
+.empty{padding:40px 20px;text-align:center;color:var(--mut)}
+.status{text-align:center;color:var(--mut);font-size:.85rem;margin-top:14px}
+#drawer{position:fixed;inset:0;background:rgba(15,23,42,.5);display:flex;justify-content:flex-start;z-index:50}
+#drawer .pan{background:#fff;width:min(520px,100%);height:100%;overflow:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.2)}
+#drawer h2{margin:0 0 4px;color:var(--g9)}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.mini div{background:var(--g0);border-radius:14px;padding:10px;text-align:center}
+.mini b{display:block;font-size:1.4rem;color:var(--g9)}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+@media (max-width:520px){header h1{font-size:1.15rem}.kpi .v{font-size:1.5rem}.filters{grid-template-columns:1fr}.hide-sm{display:none}}
+@media print{header .hbtns,.filters,.tabs,.status{display:none!important}body{background:#fff}header{padding-bottom:20px}main{margin-top:10px}.tw{max-height:none}.kpi,.card{box-shadow:none;border:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+<!-- ======= اللوحة ======= -->
+<section id="app">
+  <header>
+    <div class="hin">
+      <div>
+        <h1>📊 لوحة نتائج الطلاب</h1>
+        <div class="sub">الأستاذ محمد فرج منصور – اللغة العربية</div>
+      </div>
+      <div class="hbtns">
+        <button class="btn" id="refresh">🔄 تحديث</button>
+        <button class="btn" id="csv">⬇️ تنزيل Excel</button>
+        <button class="btn hide-sm" onclick="print()">🖨️ طباعة</button>
+        <a class="btn hide-sm" id="sheetLink" target="_blank" style="text-decoration:none">📄 فتح الشيت</a>
+        
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="kpis">
+      <div class="kpi"><div class="l">عدد مرات اللعب</div><div class="v" id="k1">0</div><div class="s" id="k1s"></div></div>
+      <div class="kpi"><div class="l">عدد الطلاب</div><div class="v" id="k2">0</div><div class="s">طالب مختلف</div></div>
+      <div class="kpi"><div class="l">متوسط الدرجات</div><div class="v" id="k3">0%</div><div class="s" id="k3s"></div></div>
+      <div class="kpi"><div class="l">آخر نتيجة</div><div class="v" id="k4" style="font-size:1.1rem;padding-top:8px">—</div><div class="s" id="k4s"></div></div>
+    </div>
+
+    <div class="filters">
+      <input id="fq" placeholder="🔍 ابحث باسم الطالب...">
+      <select id="fg"><option value="">كل الصفوف</option></select>
+      <select id="fl"><option value="">كل الدروس</option></select>
+      <select id="fd">
+        <option value="">كل الأوقات</option>
+        <option value="1">النهارده</option>
+        <option value="7">آخر 7 أيام</option>
+        <option value="30">آخر 30 يوم</option>
+      </select>
+      <select id="fs">
+        <option value="">كل المستويات</option>
+        <option value="hi">ممتاز (85% فأكثر)</option>
+        <option value="md">متوسط (50% – 84%)</option>
+        <option value="lo">ضعيف (أقل من 50%)</option>
+      </select>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-t="latest">🕒 آخر النتائج</button>
+      <button class="tab" data-t="students">👥 الطلاب</button>
+      <button class="tab" data-t="lessons">📘 الدروس والألعاب</button>
+    </div>
+
+    <div id="v-latest" class="card">
+      <h3>آخر النتائج <small id="cnt1"></small></h3>
+      <div class="tw"><table><thead><tr>
+        <th data-s="t">الوقت</th><th data-s="name">الطالب</th><th data-s="grade" class="hide-sm">الصف</th>
+        <th data-s="lesson">الدرس</th><th data-s="game" class="hide-sm">اللعبة</th><th data-s="pct">الدرجة</th>
+      </tr></thead><tbody id="tb1"></tbody></table></div>
+    </div>
+
+    <div id="v-students" class="card hide">
+      <h3>ملخص الطلاب <small id="cnt2"></small></h3>
+      <div class="tw"><table><thead><tr>
+        <th data-s="name">الطالب</th><th data-s="grade" class="hide-sm">الصف</th><th data-s="n">مرات اللعب</th>
+        <th data-s="lessons" class="hide-sm">دروس</th><th data-s="avg">المتوسط</th><th data-s="best">أعلى درجة</th><th data-s="last" class="hide-sm">آخر نشاط</th>
+      </tr></thead><tbody id="tb2"></tbody></table></div>
+    </div>
+
+    <div id="v-lessons" class="hide">
+      <div class="grid2">
+        <div class="card"><h3>متوسط كل درس <small>الأضعف أولًا</small></h3><div class="bars" id="bl"></div></div>
+        <div class="card"><h3>متوسط كل لعبة <small>الأضعف أولًا</small></h3><div class="bars" id="bg"></div></div>
+      </div>
+    </div>
+
+    <div class="status" id="st"></div>
+  </main>
+</section>
+
+<div id="drawer" class="hide"><div class="pan" id="dpan"></div></div>
+
+<script>
+/* ===================== الإعدادات ===================== */
+const API_URL = "https://script.google.com/macros/s/AKfycbx9fAFKLHG3TnuwOoPGVz_AO6KPWi7oMw5vBfFK-CCY7XeNKq-FNerfQyeZ8sftFjRJ/exec";
+const AUTO_REFRESH_SEC = 60;
+/* ===================================================== */
+
+const GRADES = {
+  prim4: 'الرابع الابتدائي', prim5: 'الخامس الابتدائي', prim6: 'السادس الابتدائي',
+  prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
+  '4 ب': 'الرابع الابتدائي', '5 ب': 'الخامس الابتدائي', '6 ب': 'السادس الابتدائي',
+  '1 ع': 'الأول الإعدادي', '2 ع': 'الثاني الإعدادي', '3 ع': 'الثالث الإعدادي'
+};
+const GORDER = ['الرابع الابتدائي','الخامس الابتدائي','السادس الابتدائي','الأول الإعدادي','الثاني الإعدادي','الثالث الإعدادي'];
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const strip = s => String(s || '').replace(/[ً-ْٰـ]/g, '').replace(/\s+/g, ' ').trim();
+const shortLesson = s => strip(s).replace(/\s*-\s*الوحدة.*$/, '').replace(/\s*-\s*الصف.*$/, '');
+const pctClass = p => p >= 85 ? 'p-hi' : p >= 50 ? 'p-md' : 'p-lo';
+const barColor = p => p >= 85 ? 'var(--g6)' : p >= 50 ? 'var(--amb)' : 'var(--red)';
+const fmtT = d => d.toLocaleString('ar-EG-u-nu-latn', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+const ago = d => { const m = Math.round((Date.now() - d) / 60000); if (m < 1) return 'دلوقتي'; if (m < 60) return 'من ' + m + ' دقيقة'; const h = Math.round(m / 60); if (h < 24) return 'من ' + h + ' ساعة'; return 'من ' + Math.round(h / 24) + ' يوم'; };
+
+let ALL = [], SHEET = '', tab = 'latest', sort = { k: 't', d: -1 }, timer = null;
+
+function gradeOf(r) {
+  const parts = String(r.page || '').split('/');
+  for (const p of parts) if (GRADES[p]) return GRADES[p];
+  const m = strip(r.lesson).match(/الصف\s+(\S+\s+\S+)/);
+  if (m) { const g = GORDER.find(x => strip(x) === m[1]); if (g) return g; }
+  return 'غير محدد';
+}
+
+/* ---------- تحميل البيانات (JSONP) ---------- */
+function load() {
+  return new Promise((res, rej) => {
+    const cb = '__cb' + Date.now();
+    const s = document.createElement('script');
+    const t = setTimeout(() => { cleanup(); rej(new Error('timeout')); }, 20000);
+    function cleanup() { clearTimeout(t); delete window[cb]; s.remove(); }
+    window[cb] = data => { cleanup(); res(data); };
+    s.onerror = () => { cleanup(); rej(new Error('net')); };
+    s.src = API_URL + '?action=data&callback=' + cb + '&_=' + Date.now();
+    document.body.appendChild(s);
+  });
+}
+
+async function start() {
+  $('st').textContent = '⏳ جاري تحميل النتائج...';
+  try {
+    const d = await load();
+    if (!d.ok) throw new Error('bad');
+    ingest(d);
+  } catch (e) {
+    $('st').innerHTML = '<b style="color:var(--red)">📴 مش قادر يوصل للشيت — اتأكد من النت، أو إن كود Apps Script اتحدث (Deploy ← New version)</b>';
+  }
+  clearInterval(timer); timer = setInterval(refresh, AUTO_REFRESH_SEC * 1000);
+}
+
+async function refresh() {
+  $('st').textContent = '⏳ جاري التحديث...';
+  try { const d = await load(); if (d.ok) ingest(d); }
+  catch (e) { $('st').textContent = '📴 تعذر التحديث — هيحاول تاني تلقائيًا'; }
+}
+
+function ingest(d) {
+  SHEET = d.sheet || '';
+  $('sheetLink').href = SHEET || '#';
+  $('sheetLink').classList.toggle('hide', !SHEET);
+  ALL = (d.rows || []).filter(r => r.total > 0).map(r => {
+    const t = new Date(r.t);
+    return { ...r, t, name: strip(r.name), lessonS: shortLesson(r.lesson), gameS: strip(r.game).replace(/^(.{0,40}).*$/, '$1'),
+             grade: gradeOf(r), pct: Math.round(r.score * 100 / r.total) };
+  }).filter(r => !isNaN(r.t));
+  fillSelect('fg', [...new Set(ALL.map(r => r.grade))].sort((a, b) => GORDER.indexOf(a) - GORDER.indexOf(b)), 'كل الصفوف');
+  render();
+  $('st').textContent = 'آخر تحديث: ' + new Date().toLocaleTimeString('ar-EG-u-nu-latn', { hour: 'numeric', minute: '2-digit' }) + ' — بيتحدث تلقائيًا كل دقيقة';
+}
+
+function fillSelect(id, vals, all) {
+  const el = $(id), cur = el.value;
+  el.innerHTML = '<option value="">' + all + '</option>' + vals.map(v => '<option>' + esc(v) + '</option>').join('');
+  if (vals.includes(cur)) el.value = cur;
+}
+
+/* ---------- الفلترة ---------- */
+function filtered() {
+  const q = strip($('fq').value), g = $('fg').value, l = $('fl').value, days = +$('fd').value, lv = $('fs').value;
+  let from = 0;
+  if (days === 1) { const d = new Date(); d.setHours(0, 0, 0, 0); from = +d; }
+  else if (days) from = Date.now() - days * 864e5;
+  return ALL.filter(r => (!q || r.name.includes(q)) && (!g || r.grade === g) && (!l || r.lessonS === l) && (!from || +r.t >= from) &&
+    (!lv || (lv === 'hi' ? r.pct >= 85 : lv === 'md' ? r.pct >= 50 && r.pct < 85 : r.pct < 50)));
+}
+function sorter(a, b) { const k = sort.k, x = a[k], y = b[k]; return (x > y ? 1 : x < y ? -1 : 0) * sort.d; }
+
+/* ---------- العرض ---------- */
+function render() {
+  // قائمة الدروس حسب الصف المختار
+  const g = $('fg').value;
+  fillSelect('fl', [...new Set(ALL.filter(r => !g || r.grade === g).map(r => r.lessonS))].sort(), 'كل الدروس');
+  const R = filtered();
+  const studs = new Set(R.map(r => r.name));
+  const avg = R.length ? Math.round(R.reduce((a, r) => a + r.pct, 0) / R.length) : 0;
+  $('k1').textContent = R.length.toLocaleString('en');
+  $('k1s').textContent = R.filter(r => +r.t >= new Date().setHours(0, 0, 0, 0)).length + ' النهارده';
+  $('k2').textContent = studs.size.toLocaleString('en');
+  $('k3').textContent = avg + '%';
+  $('k3').style.color = barColor(avg);
+  $('k3s').textContent = R.filter(r => r.pct >= 85).length + ' نتيجة ممتازة';
+  const last = R.reduce((m, r) => !m || r.t > m.t ? r : m, null);
+  $('k4').textContent = last ? last.name + ' – ' + last.score + '/' + last.total : '—';
+  $('k4s').textContent = last ? ago(last.t) : '';
+
+  if (tab === 'latest') renderLatest(R);
+  if (tab === 'students') renderStudents(R);
+  if (tab === 'lessons') renderLessons(R);
+}
+
+function renderLatest(R) {
+  const rows = [...R].sort(sorter);
+  $('cnt1').textContent = rows.length + ' نتيجة';
+  $('tb1').innerHTML = rows.length ? rows.slice(0, 500).map(r => `<tr>
+    <td class="n"><div>${fmtT(r.t)}</div><div class="muted">${ago(r.t)}</div></td>
+    <td><span class="who" data-n="${esc(r.name)}">${esc(r.name)}</span></td>
+    <td class="hide-sm muted">${esc(r.grade)}</td>
+    <td>${esc(r.lessonS)}</td>
+    <td class="hide-sm muted">${esc(r.gameS)}</td>
+    <td class="n"><span class="pill ${pctClass(r.pct)}">${r.score} / ${r.total}</span></td></tr>`).join('')
+    : `<tr><td colspan="6" class="empty">لا توجد نتائج مطابقة</td></tr>`;
+}
+
+function studentRows(R) {
+  const m = new Map();
+  for (const r of R) {
+    let s = m.get(r.name);
+    if (!s) m.set(r.name, s = { name: r.name, grades: new Set(), n: 0, sum: 0, best: 0, last: r.t, ls: new Set() });
+    s.n++; s.sum += r.pct; s.best = Math.max(s.best, r.pct); s.grades.add(r.grade); s.ls.add(r.lessonS);
+    if (r.t > s.last) s.last = r.t;
+  }
+  return [...m.values()].map(s => ({ ...s, avg: Math.round(s.sum / s.n), grade: [...s.grades].join('، '), lessons: s.ls.size }));
+}
+
+function renderStudents(R) {
+  const k = ['name', 'grade', 'n', 'lessons', 'avg', 'best', 'last'].includes(sort.k) ? sort.k : 'avg';
+  const rows = studentRows(R).sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0) * (sort.k === k ? sort.d : -1));
+  $('cnt2').textContent = rows.length + ' طالب';
+  $('tb2').innerHTML = rows.length ? rows.map(s => `<tr>
+    <td><span class="who" data-n="${esc(s.name)}">${esc(s.name)}</span></td>
+    <td class="hide-sm muted">${esc(s.grade)}</td>
+    <td class="n">${s.n}</td>
+    <td class="n hide-sm">${s.lessons}</td>
+    <td class="n"><span class="pill ${pctClass(s.avg)}">${s.avg}%</span></td>
+    <td class="n">${s.best}%</td>
+    <td class="hide-sm muted">${ago(s.last)}</td></tr>`).join('')
+    : `<tr><td colspan="7" class="empty">لا توجد نتائج مطابقة</td></tr>`;
+}
+
+function barsHTML(R, key) {
+  const m = new Map();
+  for (const r of R) { const k = r[key]; const o = m.get(k) || { k, n: 0, s: 0 }; o.n++; o.s += r.pct; m.set(k, o); }
+  const rows = [...m.values()].map(o => ({ ...o, a: Math.round(o.s / o.n) })).sort((a, b) => a.a - b.a);
+  if (!rows.length) return '<div class="empty">لا توجد بيانات</div>';
+  return rows.map(o => `<div class="bar" title="${esc(o.k)} — ${o.n} مرة">
+      <div class="nm">${esc(o.k)} <span class="muted">(${o.n})</span></div>
+      <div class="track"><div class="fill" style="width:${o.a}%;background:${barColor(o.a)}"></div></div>
+      <div class="pc" style="color:${barColor(o.a)}">${o.a}%</div></div>`).join('');
+}
+function renderLessons(R) { $('bl').innerHTML = barsHTML(R, 'lessonS'); $('bg').innerHTML = barsHTML(R, 'gameS'); }
+
+/* ---------- ملف الطالب ---------- */
+function openStudent(name) {
+  const R = ALL.filter(r => r.name === name).sort((a, b) => b.t - a.t);
+  const avg = Math.round(R.reduce((a, r) => a + r.pct, 0) / R.length);
+  $('dpan').innerHTML = `<button class="btn sec" id="dclose" style="float:left">✕ إغلاق</button>
+    <h2>👤 ${esc(name)}</h2><div class="muted">${esc([...new Set(R.map(r => r.grade))].join('، '))}</div>
+    <div class="mini"><div><b>${R.length}</b>مرات اللعب</div><div><b style="color:${barColor(avg)}">${avg}%</b>المتوسط</div><div><b>${Math.max(...R.map(r => r.pct))}%</b>أعلى درجة</div></div>
+    <table><thead><tr><th>الوقت</th><th>الدرس / اللعبة</th><th>الدرجة</th></tr></thead><tbody>
+    ${R.map(r => `<tr><td class="n muted">${fmtT(r.t)}</td><td>${esc(r.lessonS)}<div class="muted">${esc(r.gameS)}</div></td>
+      <td class="n"><span class="pill ${pctClass(r.pct)}">${r.score}/${r.total}</span></td></tr>`).join('')}</tbody></table>`;
+  $('drawer').classList.remove('hide');
+  $('dclose').onclick = () => $('drawer').classList.add('hide');
+}
+
+/* ---------- تنزيل CSV (يفتح في Excel) ---------- */
+function downloadCSV() {
+  const R = [...filtered()].sort((a, b) => b.t - a.t);
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const lines = [['الوقت', 'اسم الطالب', 'الصف', 'الدرس', 'اللعبة', 'الدرجة', 'من', 'النسبة'].map(q).join(',')]
+    .concat(R.map(r => [r.t.toLocaleString('en'), r.name, r.grade, r.lessonS, r.gameS, r.score, r.total, r.pct + '%'].map(q).join(',')));
+  const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'نتائج الطلاب.csv'; a.click();
+}
+
+/* ---------- الأحداث ---------- */
+$('refresh').onclick = refresh;
+$('csv').onclick = downloadCSV;
+['fq', 'fg', 'fl', 'fd', 'fs'].forEach(id => $(id).addEventListener(id === 'fq' ? 'input' : 'change', render));
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  tab = b.dataset.t;
+  ['latest', 'students', 'lessons'].forEach(t => $('v-' + t).classList.toggle('hide', t !== tab));
+  sort = tab === 'students' ? { k: 'avg', d: -1 } : { k: 't', d: -1 };
+  render();
+});
+document.querySelectorAll('th[data-s]').forEach(th => th.onclick = () => {
+  const k = th.dataset.s; sort = { k, d: sort.k === k ? -sort.d : (k === 'name' || k === 'lesson' || k === 'grade' || k === 'game' ? 1 : -1) }; render();
+});
+document.addEventListener('click', e => { const w = e.target.closest('.who'); if (w) openStudent(w.dataset.n); });
+$('drawer').onclick = e => { if (e.target.id === 'drawer') $('drawer').classList.add('hide'); };
+
+start();
+</script>
+</body>
+</html>
