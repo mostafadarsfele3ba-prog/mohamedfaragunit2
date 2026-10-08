@@ -1634,10 +1634,14 @@
                 <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
                 ${summaryHTML}
                 <div class="share-box">
-                    <input type="text" id="student-name-input" class="share-name-input" placeholder="اكتب اسمك">
-                    <div id="share-warning" class="share-warning">من فضلك اكتب اسمك أولًا ✍️</div>
+                    <h4>📲 أرسل نتيجتك إلى الأستاذ محمد</h4>
+                    <input type="text" id="student-name-input" class="share-name-input" placeholder="اكتب اسمك هنا أولًا">
+                    <div id="share-warning" class="share-warning">من فضلك اكتب اسمك أولًا قبل الإرسال ✋</div>
                     <div>
-                        <button class="btn btn-share" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">سلّم نتيجتك</button>
+                        <button class="btn btn-share" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/></svg>
+                            إرسال النتيجة عبر واتساب
+                        </button>
                     </div>
                 </div>
                 <button class="btn back-btn" style="font-size:1.1rem; padding:15px 30px; margin-top: 18px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
@@ -1664,7 +1668,6 @@
             `🎮 اللعبة: ${gameTitle}\n` +
             `✅ النتيجة: ${score} من ${total}\n` +
             `⭐ نسبة النجاح: ${Math.round((score/total)*100)}%`;
-        __sendToSheet(message); return;
         const url = `https://wa.me/201143270328?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     }
@@ -2152,15 +2155,19 @@
 window.RESULTS_URL = "https://script.google.com/macros/s/AKfycbx9fAFKLHG3TnuwOoPGVz_AO6KPWi7oMw5vBfFK-CCY7XeNKq-FNerfQyeZ8sftFjRJ/exec";
 </script>
 <script>
-/* ===== إرسال النتيجة مباشرة لجدول نتائج الأستاذ (Google Sheets) ===== */
+/* ===== اسم الطالب قبل اللعب + تسليم النتيجة تلقائيًا لجدول نتائج الأستاذ ===== */
 (function () {
-  var QKEY = '__pending_results_v1';
+  var QKEY = '__pending_results_v1', NKEY = '__student_name_v1';
   function url() { return (window.RESULTS_URL || '').trim(); }
   function g(v) { try { return v(); } catch (e) { return undefined; } }
   function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
-  function loadQ() { try { return JSON.parse(localStorage.getItem(QKEY) || '[]'); } catch (e) { return []; } }
-  function saveQ(q) { try { localStorage.setItem(QKEY, JSON.stringify(q)); } catch (e) {} }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function loadQ() { try { return JSON.parse(lsGet(QKEY) || '[]'); } catch (e) { return []; } }
+  function saveQ(q) { lsSet(QKEY, JSON.stringify(q)); }
+  var studentName = norm(lsGet(NKEY) || '');
 
+  /* ---------- الإرسال مع الحفظ لو مفيش نت ---------- */
   function post(item) {
     return fetch(url(), { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
   }
@@ -2173,56 +2180,102 @@ window.RESULTS_URL = "https://script.google.com/macros/s/AKfycbx9fAFKLHG3TnuwOoP
   window.addEventListener('online', flush);
   window.addEventListener('load', function () { setTimeout(flush, 1500); });
 
-  function toast(html, color) {
-    var t = document.getElementById('__res-toast');
-    if (!t) {
-      t = document.createElement('div'); t.id = '__res-toast';
-      t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:999999;max-width:92%;width:420px;' +
-        'padding:16px 18px;border-radius:16px;color:#fff;font-weight:700;font-size:1.05rem;line-height:1.7;text-align:center;' +
-        'box-shadow:0 12px 30px rgba(0,0,0,.35);direction:rtl;font-family:inherit;transition:opacity .3s';
-      document.body.appendChild(t);
+  /* ---------- الستايل ---------- */
+  var css = document.createElement('style');
+  css.textContent =
+    '#__nm-ov{position:fixed;inset:0;z-index:999990;background:rgba(15,23,42,.65);display:flex;align-items:center;justify-content:center;padding:18px;direction:rtl}' +
+    '#__nm-box{background:#fff;border-radius:22px;padding:26px 22px;width:100%;max-width:380px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.35);font-family:inherit}' +
+    '#__nm-box .ic{font-size:44px;line-height:1;margin-bottom:8px}' +
+    '#__nm-box h3{margin:0 0 14px;font-size:1.35rem;color:var(--primary,#15803d);font-weight:800}' +
+    '#__nm-in{width:100%;box-sizing:border-box;padding:13px 14px;border:2px solid #cbd5e1;border-radius:14px;font-size:1.15rem;text-align:center;font-family:inherit;outline:none}' +
+    '#__nm-in:focus{border-color:var(--primary,#16a34a)}' +
+    '#__nm-go{margin-top:14px;width:100%;border:0;border-radius:14px;padding:14px;font-size:1.15rem;font-weight:800;color:#fff;cursor:pointer;font-family:inherit;background:linear-gradient(to bottom,#22c55e,#16a34a);box-shadow:0 4px 0 #15803d}' +
+    '#__nm-err{color:#dc2626;font-weight:700;margin-top:8px;min-height:1.3em;font-size:.95rem}' +
+    '#__nm-badge{position:fixed;bottom:14px;right:14px;z-index:99990;background:#fff;border:2px solid #bbf7d0;color:#14532d;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.9rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.12);font-family:inherit;max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+    '.__res-status{margin-top:22px;padding:14px 16px;border-radius:16px;font-weight:800;font-size:1.1rem;line-height:1.7}' +
+    '.__rs-wait{background:#eff6ff;color:#1d4ed8;border:2px solid #bfdbfe}.__rs-ok{background:#ecfdf5;color:#15803d;border:2px solid #a7f3d0}' +
+    '.__rs-off{background:#fffbeb;color:#b45309;border:2px solid #fde68a}.__rs-bad{background:#fef2f2;color:#b91c1c;border:2px solid #fecaca}';
+  document.head.appendChild(css);
+
+  /* ---------- شاشة الاسم ---------- */
+  function askName(then) {
+    var old = document.getElementById('__nm-ov'); if (old) old.remove();
+    var ov = document.createElement('div'); ov.id = '__nm-ov';
+    ov.innerHTML = '<div id="__nm-box"><div class="ic">✍️</div><h3>اكتب اسمك</h3>' +
+      '<input id="__nm-in" type="text" autocomplete="name" maxlength="60">' +
+      '<button id="__nm-go">ابدأ</button><div id="__nm-err"></div></div>';
+    document.body.appendChild(ov);
+    var inp = document.getElementById('__nm-in');
+    inp.value = studentName;
+    setTimeout(function () { inp.focus(); }, 50);
+    function go() {
+      var v = norm(inp.value);
+      if (v.length < 2) { document.getElementById('__nm-err').textContent = 'من فضلك اكتب اسمك'; inp.focus(); return; }
+      studentName = v; lsSet(NKEY, v); ov.remove(); badge();
+      if (then) then();
     }
-    t.style.background = color; t.innerHTML = html; t.style.opacity = '1';
-    clearTimeout(t._h); t._h = setTimeout(function () { t.style.opacity = '0'; }, 5000);
+    document.getElementById('__nm-go').onclick = go;
+    inp.onkeydown = function (e) { if (e.key === 'Enter') go(); };
+  }
+  function badge() {
+    var b = document.getElementById('__nm-badge');
+    if (!studentName) { if (b) b.remove(); return; }
+    if (!b) { b = document.createElement('button'); b.id = '__nm-badge'; b.title = 'تغيير الاسم'; b.onclick = function () { askName(); }; document.body.appendChild(b); }
+    b.textContent = '👤 ' + studentName;
   }
 
-  // يرجع true لو اتعامل مع الإرسال (فاللعبة متفتحش واتساب)، false لو مفيش رابط جدول
-  window.__sendToSheet = function (original) {
-    if (!url()) { toast('⚠️ رابط استلام النتائج غير مضبوط', '#dc2626'); return true; }
-    original = String(original || '');
-    var sm = original.match(/(?:النتيجة|نتيجتي)\s*:\s*(\d+)\s*من\s*(\d+)/);
-    if (!sm) return false;
-    var inp = document.getElementById('student-name-input');
-    var name = norm(inp ? inp.value : '');
-    var btn = document.querySelector('button[onclick*="sendResult"]');
-    if (btn && btn.dataset.sent === '1') { toast('✅ تم تسليم نتيجتك', '#16a34a'); return true; }
-    var item = {
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
-      name: name,
-      lesson: norm(g(function () { return LESSON_FULL_NAME; }) || g(function () { return LESSON_TITLE; }) || g(function () { return LESSON_NAME; }) || document.title),
-      game: norm(((original.match(/اللعبة\s*:\s*(.+)/) || [])[1]) || g(function () { return currentGame.title; }) || ''),
-      score: +sm[1], total: +sm[2],
-      page: decodeURIComponent(location.pathname.split('/').slice(-3).join('/')),
-      clientTime: new Date().toISOString()
+  /* ---------- قبل أي لعبة: لازم الاسم ---------- */
+  var origStart = window.startGame;
+  if (typeof origStart === 'function') {
+    window.startGame = function (gameData) {
+      var self = this, args = arguments;
+      if (!studentName) { askName(function () { origStart.apply(self, args); }); return; }
+      return origStart.apply(self, args);
     };
-    if (btn) { btn.dataset.sent = '1'; btn.disabled = true; btn.style.opacity = '.6'; btn.innerHTML = '✅ تم التسليم'; }
-    if (inp) inp.disabled = true;
-    var stEl = document.getElementById('wa-status'); if (stEl) stEl.textContent = '';
-    var wEl = document.getElementById('name-warning') || document.getElementById('share-warning'); if (wEl) wEl.style.display = 'none';
-    var q = loadQ(); q.push(item); saveQ(q);
-    if (!navigator.onLine) {
-      toast('📴 مفيش إنترنت — نتيجتك هتتسلم تلقائيًا أول ما النت يرجع', '#d97706');
-      return true;
-    }
-    toast('⏳ جاري التسليم...', '#2563eb');
-    post(item).then(function () {
-      saveQ(loadQ().filter(function (x) { return x.id !== item.id; }));
-      toast('✅ تم تسليم نتيجتك', '#16a34a');
-    }).catch(function () {
-      toast('📴 النت ضعيف — نتيجتك هتتسلم تلقائيًا لما النت يرجع', '#d97706');
-    });
-    return true;
-  };
+  }
+
+  /* ---------- بعد آخر سؤال: تسليم تلقائي ---------- */
+  function setStatus(el, cls, html) { el.className = '__res-status ' + cls; el.innerHTML = html; }
+  var origComplete = window.gameComplete;
+  if (typeof origComplete === 'function') {
+    window.gameComplete = function () {
+      var ret = origComplete.apply(this, arguments);
+      try {
+        var gc = document.getElementById('game-container') || document.body;
+        var m = (gc.innerText || '').match(/نتيجتك\s*:\s*(\d+)\s*من\s*(\d+)/);
+        // إخفاء صندوق الإرسال القديم وإظهار حالة التسليم مكانه
+        var inp = document.getElementById('student-name-input');
+        var box = inp ? inp.parentElement : null;
+        var st = document.createElement('div');
+        if (box) box.replaceWith(st); else gc.appendChild(st);
+        if (!m) { setStatus(st, '__rs-bad', '⚠️ تعذر قراءة النتيجة'); return ret; }
+        var item = {
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+          name: studentName || 'بدون اسم',
+          lesson: norm(g(function () { return LESSON_FULL_NAME; }) || g(function () { return LESSON_TITLE; }) || g(function () { return LESSON_NAME; }) || document.title),
+          game: norm(g(function () { return currentGame.title; }) || ''),
+          score: +m[1], total: +m[2],
+          page: decodeURIComponent(location.pathname.split('/').slice(-3).join('/')),
+          clientTime: new Date().toISOString()
+        };
+        if (!url()) { setStatus(st, '__rs-bad', '⚠️ رابط استلام النتائج غير مضبوط'); return ret; }
+        var q = loadQ(); q.push(item); saveQ(q);
+        if (!navigator.onLine) { setStatus(st, '__rs-off', '📴 مفيش إنترنت — نتيجتك هتتسلم تلقائيًا أول ما النت يرجع'); return ret; }
+        setStatus(st, '__rs-wait', '⏳ جاري تسليم نتيجتك...');
+        post(item).then(function () {
+          saveQ(loadQ().filter(function (x) { return x.id !== item.id; }));
+          setStatus(st, '__rs-ok', '✅ تم تسليم نتيجتك<br><span style="font-weight:600;font-size:.95rem">' + item.name.replace(/[<>&]/g, '') + '</span>');
+        }).catch(function () {
+          setStatus(st, '__rs-off', '📴 النت ضعيف — نتيجتك هتتسلم تلقائيًا لما النت يرجع');
+        });
+      } catch (e) {}
+      return ret;
+    };
+  }
+
+  /* ---------- أول ما الصفحة تفتح ---------- */
+  function init() { askName(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
 </script>
