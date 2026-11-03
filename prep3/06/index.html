@@ -1,0 +1,3494 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>اسم الزمان | الصف الثالث الإعدادي | الأستاذ محمد فرج منصور</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14532d;      
+            --primary-light: #22c55e; 
+            --secondary: #059669;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #65a30d;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        .header-main {
+            background: linear-gradient(135deg, #052e16, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #dcfce7;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(1.5rem, 5.2vw, 2.6rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #bbf7d0, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.3;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #fdf2f8; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(34, 197, 94, 0.25); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #14532d; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.3rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 0.95rem; color: #64748b; font-weight: 600;}
+
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #22c55e; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.1rem, 3.6vw, 1.5rem);
+            font-weight: 800;
+            color: #14532d;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #059669;
+            line-height: 1.7;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1rem, 3.2vw, 1.3rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #052e16, #14532d);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #22c55e; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(220,252,231,0.9));
+            color: #14532d;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.8rem, 1.9vw, 1rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23ecfdf5" width="100%" height="100%"/><circle fill="%23bbf7d0" cx="20%" cy="30%" r="50"/><circle fill="%23bbf7d0" cx="80%" cy="60%" r="70"/><circle fill="%23bbf7d0" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #22c55e; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.85rem, 2.7vw, 1.05rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #fffbeb; }
+
+        /* تحدي العباقرة */
+        .genius-box { border: 3px solid var(--warning) !important; background: linear-gradient(135deg, #fffbeb, #ffffff); }
+        .genius-timer-wrap { width: 100%; height: 16px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 22px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .genius-timer-bar { height: 100%; background: linear-gradient(to right, #10b981, var(--warning), var(--danger)); width: 100%; transition: width 0.1s linear; border-radius: 10px; }
+        .genius-hint { text-align: center; margin-top: 15px; color: var(--warning); font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        .whatsapp-float {
+            position: fixed; bottom: 25px; left: 25px;
+            background: #25d366; color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100; transition: all 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); box-shadow: 0 12px 20px rgba(37, 211, 102, 0.6); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: currentColor; }
+
+        .send-result-box {
+            margin-top: 25px; background: #f0fdf4; border: 2px dashed #25d366;
+            border-radius: 15px; padding: 20px;
+        }
+        .send-result-box h3 { color: #128c7e; margin-bottom: 12px; font-size: 1.2rem; }
+        .name-input {
+            width: 100%; padding: 14px; border-radius: 10px; border: 2px solid #cbd5e1;
+            font-size: 1.05rem; font-family: 'Cairo', sans-serif; text-align: center; margin-bottom: 12px;
+        }
+        .name-input:focus { outline: none; border-color: #25d366; }
+        .whatsapp-send-btn {
+            width: 100%; background: linear-gradient(to bottom, #25d366, #128c7e);
+            border-bottom: 3px solid #0d6b5f;
+        }
+        .name-warning { color: var(--danger); font-size: 0.9rem; margin-top: 8px; font-weight: bold; }
+
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+            .round-badge { display:inline-block; margin-top:12px; padding:5px 14px; border-radius:999px; background:#f0fdf4; color:#15803d; border:1px solid #86efac; font-weight:800; font-size:.9rem; }
+        .bubble span { line-height:1.35; }
+    </style>
+</head>
+<body>
+
+    <header class="header-main" id="main-header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <img src="logo.jpeg" alt="الأستاذ محمد فرج منصور" style="width: 360px; max-width: 80vw; height: auto; aspect-ratio: 1 / 1; border-radius: 30px; border: 4px solid #4ade80; box-shadow: 0 8px 16px rgba(0,0,0,0.4); background-color: white; object-fit: cover; object-position: center; flex-shrink: 0;" onerror="this.style.display='none'">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        دَرْسٌ
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#bbf7d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لُعْبَة
+                    </h1>
+                    <h1 class="title-line2">مَعَ الأُسْتَاذِ مُحَمَّد فَرَج مَنْصُور</h1>
+                    <p class="platform-badge" style="display:inline-block; margin:8px auto 4px; padding:6px 22px; border-radius:999px; background:rgba(255,255,255,0.14); border:2px solid #4ade80; color:#dcfce7; font-weight:900; font-size:1.3rem; letter-spacing:0.5px;">✒️ اسم الزمان</p>
+                    <h2>الصَّفُّ الثَّالِثُ الإِعْدَادِيُّ - الوحدة الثالثة</h2>
+                    <p style="margin-top: 10px;">القواعد النحوية • 🎲 كل لعبة 20 سؤالًا تتغير عشوائيًّا من بنك 50 سؤالًا</p>
+                </div>
+            </div>
+        </div>
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f0f4f8" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid"></div>
+    </div>
+
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 20</span>
+        </div>
+        <div class="game-container" id="game-container"></div>
+    </div>
+
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | الأستاذ محمد فرج منصور</p>
+        <p class="designer">الأستاذ / محمد فرج منصور</p>
+    </footer>
+
+    <a href="https://wa.me/201143270328" class="whatsapp-float" target="_blank" title="تواصل معنا">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/>
+        </svg>
+    </a>
+
+<script>
+    const LESSON_FULL_NAME = "اسم الزمان - الوحدة الثالثة - الصف الثالث الإعدادي";
+    const LESSON_KEY = "mfarag-prep3-zaman";
+    const TEACHER_WHATSAPP = "201143270328";
+    const QUESTIONS_PER_ROUND = 20;
+    const allGamesData = [
+ {
+  "id": "g1_shooting",
+  "title": "التنشين والاصطياد: صوّب اسم الزمان",
+  "type": "shooting",
+  "desc": "اصطد اسم الزمان أو نوع الكلمة",
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>",
+  "questions": [
+   {
+    "q": "اسم الزمان في «موعد الامتحان غدًا»:",
+    "options": [
+     "لا يوجد",
+     "موعد",
+     "غدًا",
+     "الامتحان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان في «حان مَغرب الشمس»:",
+    "options": [
+     "حان",
+     "مغرب",
+     "الشمس",
+     "لا يوجد"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان في «مطلع الفجر جميل»:",
+    "options": [
+     "لا يوجد",
+     "جميل",
+     "الفجر",
+     "مطلع"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان في «ملتقى الأحبة في العيد»:",
+    "options": [
+     "ملتقى",
+     "العيد",
+     "لا يوجد",
+     "الأحبة"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان في «ممسى الضيوف بعد العشاء»:",
+    "options": [
+     "لا يوجد",
+     "ممسى",
+     "العشاء",
+     "الضيوف"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (وعد):",
+    "options": [
+     "مَوعِد",
+     "واعد",
+     "مَوعَد",
+     "موعود"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من (غرب - يغرُب) المسموع:",
+    "options": [
+     "مَغرَب",
+     "غارب",
+     "غروب",
+     "مَغرِب"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان من (طلع - يطلُع):",
+    "options": [
+     "مَطلِع",
+     "طلوع",
+     "طالع",
+     "مَطلَع"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان من (التقى):",
+    "options": [
+     "لقاء",
+     "لاقٍ",
+     "مُلتقى",
+     "مَلقى"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (أمسى):",
+    "options": [
+     "ممسٍ",
+     "مَمسى",
+     "مُمسى",
+     "مساء"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (أصبح):",
+    "options": [
+     "صباح",
+     "مُصبَح",
+     "مُصبِح",
+     "صابح"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (انتهى):",
+    "options": [
+     "مَنتهى",
+     "منتهٍ",
+     "مُنتهى",
+     "نهاية"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (نام):",
+    "options": [
+     "مَنام",
+     "نائم",
+     "نوم",
+     "مَنيم"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من (ولد - يلِد):",
+    "options": [
+     "مَولَد",
+     "مولود",
+     "مَولِد",
+     "والد"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (رسا):",
+    "options": [
+     "مَرسى",
+     "راسٍ",
+     "مَرسِي",
+     "رسوّ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من (بدأ - يبدأ):",
+    "options": [
+     "مَبدأ",
+     "مَبدِئ",
+     "بادئ",
+     "بداية"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من (انطلق):",
+    "options": [
+     "انطلاق",
+     "طالق",
+     "مُنطلَق",
+     "مُنطلِق"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (عاد - يعود):",
+    "options": [
+     "عائد",
+     "مَعاد",
+     "عودة",
+     "مَعيد"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (شرق - يشرُق) المسموع:",
+    "options": [
+     "شارق",
+     "مَشرِق",
+     "مَشرَق",
+     "شروق"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (هبّ):",
+    "options": [
+     "مَهِبّ",
+     "مَهَبّ",
+     "هبوب",
+     "هابّ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "وزن (مَطلَع):",
+    "options": [
+     "مَفعِل",
+     "فاعل",
+     "مَفعَل",
+     "مُفعَل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "وزن (مَوعِد):",
+    "options": [
+     "مَفعِل",
+     "فاعل",
+     "مُفعَل",
+     "مَفعَل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "وزن (مُلتقى):",
+    "options": [
+     "مَفعِل",
+     "مَفعَل",
+     "على وزن اسم المفعول",
+     "فاعل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "نوع (موعد) في «حان موعد الصلاة»:",
+    "options": [
+     "اسم زمان",
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (موعد) في «وصلنا إلى موعد اللقاء في الحديقة» بمعنى المكان:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "اسم فاعل",
+     "مصدر"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "نوع (ملتقى) في «ملتقى الأحبة يوم الجمعة»:",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "مصدر",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "نوع (ملتقى) في «ملتقى الأحبة في النادي»:",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "نوع (مغرب) في «صلّينا عند المغرب»:",
+    "options": [
+     "اسم زمان",
+     "اسم فاعل",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (مغرب) في «اتجهنا نحو المغرب»:",
+    "options": [
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "نوع (منام) في «منام الطفل في الثامنة»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان",
+     "اسم فاعل",
+     "مصدر"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "نوع (منام) في «منام الطفل غرفة هادئة»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«حان ........ الطائرة» (أقلع):",
+    "options": [
+     "قالع",
+     "مُقلَع",
+     "إقلاع",
+     "مُقلِع"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«اقترب ........ الشمس» (غرب):",
+    "options": [
+     "غروب",
+     "مغروب",
+     "غارب",
+     "مغرب"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ الامتحان بعد أسبوع» (وعد):",
+    "options": [
+     "موعود",
+     "موعد",
+     "وعد",
+     "واعد"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«........ الدراسة في سبتمبر» (بدأ):",
+    "options": [
+     "مبدأ",
+     "بادئ",
+     "بداية",
+     "مبدوء"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ العام الدراسي في يونيو» (انتهى):",
+    "options": [
+     "منتهٍ",
+     "نهى",
+     "نهاية",
+     "منتهى"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ الفجر يبشر بالخير» (طلع):",
+    "options": [
+     "طلوع",
+     "مطلوع",
+     "طالع",
+     "مطلع"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ القمر أول الشهر» (طلع):",
+    "options": [
+     "طالع",
+     "مطلع",
+     "مطلوع",
+     "طلوع"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«........ النبي ﷺ في ربيع الأول» (ولد):",
+    "options": [
+     "ولادة",
+     "والد",
+     "مولود",
+     "مولد"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«سنتقابل ........ الخميس» (أمسى):",
+    "options": [
+     "ممسٍ",
+     "أمسية",
+     "مساء",
+     "مُمسى"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان يدل على:",
+    "options": [
+     "مكان وقوع الفعل",
+     "زمان وقوع الفعل",
+     "من وقع عليه الفعل",
+     "من قام بالفعل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "السؤال الذي يميز اسم الزمان:",
+    "options": [
+     "من؟",
+     "ماذا؟",
+     "أين؟",
+     "متى؟"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "السؤال الذي يميز اسم المكان:",
+    "options": [
+     "ماذا؟",
+     "متى؟",
+     "أين؟",
+     "من؟"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "يتشابه اسم الزمان مع اسم المكان في:",
+    "options": [
+     "الصياغة والوزن",
+     "الإعراب دائمًا",
+     "لا يتشابهان",
+     "المعنى"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "يُميَّز اسم الزمان من اسم المكان بـ:",
+    "options": [
+     "السياق",
+     "الوزن",
+     "الحروف",
+     "الحركة"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "من غير الثلاثي يأتي اسم الزمان على وزن:",
+    "options": [
+     "مَفعِل",
+     "فعّال",
+     "اسم الفاعل",
+     "اسم المفعول"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "من الثلاثي يأتي اسم الزمان على وزن:",
+    "options": [
+     "فعيل",
+     "مَفعَل أو مَفعِل",
+     "فاعل",
+     "مفعول"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«........ اللقاء بعد العصر» (لقي):",
+    "options": [
+     "لاقٍ",
+     "لقاء",
+     "ملقيّ",
+     "مَلقى"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ السفينة عند الفجر» (رسا):",
+    "options": [
+     "رسوّ",
+     "راسٍ",
+     "مرسيّ",
+     "مرسى"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ الرحلة في السابعة صباحًا» (انطلق):",
+    "options": [
+     "طالق",
+     "منطلِق",
+     "منطلق",
+     "انطلاق"
+    ],
+    "ans": 2
+   }
+  ]
+ },
+ {
+  "id": "g2_true_false",
+  "title": "صح أم خطأ",
+  "type": "true_false",
+  "desc": "اختبر فهمك لاسم الزمان",
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>",
+  "questions": [
+   {
+    "q": "اسم الزمان اسم مشتق يدل على زمان وقوع الفعل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان يدل على مكان وقوع الفعل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "يُصاغ اسم الزمان بالطريقة نفسها التي يُصاغ بها اسم المكان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "يُفرَّق بين اسم الزمان واسم المكان بالسياق.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "يُصاغ اسم الزمان من الثلاثي على وزن مَفعَل أو مَفعِل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "يُصاغ اسم الزمان من غير الثلاثي على وزن اسم المفعول.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "يُصاغ اسم الزمان من غير الثلاثي على وزن اسم الفاعل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَوعِد) في «حان موعد الامتحان» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَوعِد) على وزن مَفعَل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَوعِد) على وزن مَفعِل لأن الفعل مثال.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَطلَع) في «مطلع الفجر» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَطلَع) على وزن مَفعَل.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُلتقى) قد يكون اسم زمان أو اسم مكان بحسب السياق.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُمسى) اسم زمان من (أمسى).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُصبَح) اسم زمان من (أصبح).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُصبِح) اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مُنتهى) اسم زمان من (انتهى).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَغرِب) في «صلّينا المغرب في وقتها» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَغرِب) في «تغرب الشمس في المغرب» اسم مكان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَنام) قد يكون اسم زمان أو مكان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَولِد) في «مولد النبي ﷺ في ربيع الأول» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مولود) اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَبدأ) في «مبدأ الدراسة سبتمبر» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(بداية) اسم زمان مشتق.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان يُسأل عنه بـ(متى؟).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان يُسأل عنه بـ(أين؟).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَعاد) اسم زمان من (عاد).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَرسى) في «مرسى السفينة عند الغروب» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَرسى) في «مرسى السفينة في الميناء» اسم مكان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُنطلَق) اسم زمان أو مكان من (انطلق).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُنطلِق) اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان يأتي غالبًا مضافًا إلى ما يدل على الحدث.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَطلَع) أصله من (طلع - يطلُع) مضموم العين.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَهَبّ الرياح) قد يكون زمانًا أو مكانًا.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَشرِق) جاء على مَفعِل سماعًا.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُقلَع) اسم زمان من (أقلع).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من الأسماء المشتقة.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من الأفعال.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(صباحًا) في «سافرتُ صباحًا» اسم زمان مشتق.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(صباحًا) في «سافرتُ صباحًا» ظرف زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "ظرف الزمان واسم الزمان المشتق شيء واحد دائمًا.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَوعِد) و(مَولِد) على وزن واحد.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَلعب) اسم زمان دائمًا.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مُنتدى) في «منتدى الشباب يوم الخميس» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(ملتقى) في «ملتقى الطلاب في الفناء» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَبيت) في «مبيت الحجاج ليلة العيد» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَصيف) في «مصيف الأسرة في أغسطس» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مَصيف) في «مصيف الأسرة في الإسكندرية» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "(مَشتى) اسم زمان أو مكان من (شتا).",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "(مُعسكَر) في «معسكر الطلاب في الصيف» اسم زمان.",
+    "options": [
+     "صح",
+     "خطأ"
+    ],
+    "ans": 0
+   }
+  ]
+ },
+ {
+  "id": "g3_mcq",
+  "title": "اختيار من متعدد: اسم الزمان",
+  "type": "mcq",
+  "desc": "اختر الإجابة الصحيحة",
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"></path><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"></path></svg>",
+  "questions": [
+   {
+    "q": "اسم الزمان:",
+    "options": [
+     "اسم يدل على مكان الفعل",
+     "اسم يدل على من قام بالفعل",
+     "فعل",
+     "اسم مشتق يدل على زمان وقوع الفعل"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "وزنا اسم الزمان من الثلاثي:",
+    "options": [
+     "مَفعَل ومَفعِل",
+     "مُفعِل ومُفعَل",
+     "فاعل ومفعول",
+     "مِفعال وفعّال"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من غير الثلاثي:",
+    "options": [
+     "على وزن مفعول",
+     "على وزن اسم الفاعل",
+     "على وزن فاعل",
+     "على وزن اسم المفعول"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "كيف نفرّق بين اسم الزمان واسم المكان؟",
+    "options": [
+     "بعدد الحروف",
+     "بالوزن",
+     "بالسياق",
+     "بالحركة"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان في «يأتي مطلع الربيع في مارس»:",
+    "options": [
+     "يأتي",
+     "مارس",
+     "الربيع",
+     "مطلع"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان في «حان موعد الصلاة»:",
+    "options": [
+     "موعد",
+     "لا يوجد",
+     "حان",
+     "الصلاة"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان في «ممسى الضيوف في الثامنة»:",
+    "options": [
+     "الضيوف",
+     "لا يوجد",
+     "ممسى",
+     "الثامنة"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان في «منتهى العام في ديسمبر»:",
+    "options": [
+     "ديسمبر",
+     "منتهى",
+     "العام",
+     "لا يوجد"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (وعد):",
+    "options": [
+     "مَوعِد",
+     "موعود",
+     "واعد",
+     "مَوعَد"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان من (طلع):",
+    "options": [
+     "طالع",
+     "مطلوع",
+     "مَطلَع",
+     "مَطلِع"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (التقى):",
+    "options": [
+     "لقاء",
+     "لاقٍ",
+     "مُلتقى",
+     "مَلقى"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (أمسى):",
+    "options": [
+     "مَمسى",
+     "مُمسٍ",
+     "مُمسى",
+     "مساء"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (أصبح):",
+    "options": [
+     "صباح",
+     "مُصبَح",
+     "صابح",
+     "مُصبِح"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (انتهى):",
+    "options": [
+     "منتهٍ",
+     "نهاية",
+     "ناهٍ",
+     "مُنتهى"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان من (ولد):",
+    "options": [
+     "مولود",
+     "والد",
+     "مَولَد",
+     "مَولِد"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان من (عاد):",
+    "options": [
+     "مَعاد",
+     "عودة",
+     "عائد",
+     "مَعيد"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ الطائرة في الخامسة» (أقلع):",
+    "options": [
+     "مُقلَع",
+     "إقلاع",
+     "مُقلِع",
+     "قالع"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ الشمس بعد قليل» (غرب):",
+    "options": [
+     "غروب",
+     "غارب",
+     "مغروب",
+     "مغرب"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«........ الدراسة بعد الإجازة» (بدأ):",
+    "options": [
+     "مبدوء",
+     "بداية",
+     "مبدأ",
+     "بادئ"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "نوع (موعد) في «موعد الحفل الساعة الثامنة»:",
+    "options": [
+     "اسم زمان",
+     "مصدر",
+     "اسم مكان",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (موعد) في «موعد اللقاء أمام المدرسة»:",
+    "options": [
+     "اسم زمان",
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "نوع (مولد) في «مولد الطفل في الربيع»:",
+    "options": [
+     "اسم زمان",
+     "مصدر",
+     "اسم مفعول",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (مولد) في «مولد الطفل في القاهرة»:",
+    "options": [
+     "اسم مكان",
+     "اسم مفعول",
+     "اسم زمان",
+     "مصدر"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (ملتقى) في «ملتقى الأصدقاء مساء الجمعة»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان",
+     "اسم فاعل",
+     "اسم مفعول"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "نوع (ملتقى) في «ملتقى الأصدقاء على شاطئ البحر»:",
+    "options": [
+     "اسم زمان",
+     "اسم فاعل",
+     "اسم مفعول",
+     "اسم مكان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "نوع (منام) في «منامي في العاشرة»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "نوع (منام) في «منامي في غرفة هادئة»:",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "الفرق بين (مُصبَح) و(مُصبِح):",
+    "options": [
+     "كلاهما اسم زمان",
+     "كلاهما اسم فاعل",
+     "لا فرق",
+     "الأولى اسم زمان والثانية اسم فاعل"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "الفرق بين (مُنطلَق) و(مُنطلِق):",
+    "options": [
+     "لا فرق",
+     "كلاهما مصدر",
+     "كلاهما اسم فاعل",
+     "الأولى اسم زمان/مكان والثانية اسم فاعل"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "الكلمة التي تصلح اسم زمان:",
+    "options": [
+     "غارب",
+     "غروب",
+     "مغرب",
+     "مغروب"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "الكلمة التي لا تصلح اسم زمان:",
+    "options": [
+     "مطلع",
+     "موعد",
+     "مولود",
+     "مولد"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "الكلمة التي هي اسم زمان من غير الثلاثي:",
+    "options": [
+     "مُنتهى",
+     "مَغرِب",
+     "مَوعِد",
+     "مَطلَع"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "وزن (مَطلَع) ولماذا:",
+    "options": [
+     "مُفعَل",
+     "فاعل",
+     "مَفعِل",
+     "مَفعَل لأن المضارع (يطلُع) مضموم العين"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "وزن (مَوعِد) ولماذا:",
+    "options": [
+     "مُفعَل",
+     "مَفعَل لأنه مضموم",
+     "فاعل",
+     "مَفعِل لأن الفعل مثال صحيح الآخر"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "وزن (مَنام) ولماذا:",
+    "options": [
+     "مَفعِل",
+     "فاعل",
+     "مَفعَل لأن مضارعه (ينام) مفتوح العين",
+     "مُفعَل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "وزن (مَبيت) ولماذا:",
+    "options": [
+     "مَفعَل",
+     "مَفعِل لأن مضارعه (يبيت) مكسور العين",
+     "فاعل",
+     "مُفعَل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مطلع الشمس جميل في الشتاء» نوع (مطلع):",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مطلع الشمس من الشرق» نوع (مطلع):",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "مصدر",
+     "اسم مكان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "اسم الزمان الذي جاء على مَفعِل سماعًا:",
+    "options": [
+     "مَلعب",
+     "مَغرِب",
+     "مَنام",
+     "مَطلَع"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«متى موعد الرحلة؟» السؤال بـ(متى) يدل على أن (موعد):",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "فعل",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«أين موعد اللقاء؟» السؤال بـ(أين) يدل على أن (موعد):",
+    "options": [
+     "اسم زمان",
+     "فعل",
+     "اسم مكان",
+     "اسم فاعل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (اجتمع):",
+    "options": [
+     "اجتماع",
+     "جامع",
+     "مُجتمَع",
+     "مُجتمِع"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (استقبل):",
+    "options": [
+     "قابل",
+     "استقبال",
+     "مُستقبَل",
+     "مُستقبِل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«المُستقبَل مشرق بإذن الله» (المستقبل) هنا:",
+    "options": [
+     "فعل",
+     "اسم فاعل",
+     "اسم زمان",
+     "مصدر"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«المستقبِل للضيوف مبتسم» (المستقبِل) هنا:",
+    "options": [
+     "مصدر",
+     "فعل",
+     "اسم زمان",
+     "اسم فاعل"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«نجتمع في مُنتصَف الليل» اسم الزمان وفعله:",
+    "options": [
+     "نجتمع - اجتمع",
+     "الليل - ليل",
+     "منتصف - نصف",
+     "منتصف - انتصف"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«حضرنا في مُفتتَح المؤتمر» اسم الزمان وفعله:",
+    "options": [
+     "حضرنا - حضر",
+     "المؤتمر - ائتمر",
+     "مفتتح - افتتح",
+     "مفتتح - فتح"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«مَقدَم الحجاج بعد العيد» نوع (مقدم):",
+    "options": [
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«مَشتى الطيور المهاجرة في نوفمبر» نوع (مشتى):",
+    "options": [
+     "اسم مكان",
+     "اسم زمان",
+     "اسم فاعل",
+     "مصدر"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مَشتى الطيور المهاجرة في مصر» نوع (مشتى):",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 2
+   }
+  ]
+ },
+ {
+  "id": "g4_genius",
+  "title": "تحدي العباقرة",
+  "type": "genius",
+  "desc": "تطبيقات أعمق على اسم الزمان - سباق مع الوقت!",
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"></polygon></svg>",
+  "questions": [
+   {
+    "q": "«موعدنا مطلع الفجر في ملتقى الطرق» أسماء الزمان والمكان:",
+    "options": [
+     "موعد (مكان)",
+     "موعد ومطلع (زمان) - ملتقى (مكان)",
+     "كلها زمان",
+     "كلها مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "استعمل (موعد) اسم زمان في جملة:",
+    "options": [
+     "الموعود صادق",
+     "وعد الطالب",
+     "موعد الاختبار في القاعة",
+     "موعد الاختبار يوم الأحد"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "استعمل (موعد) اسم مكان في جملة:",
+    "options": [
+     "الواعد صادق",
+     "موعد اللقاء في الصباح",
+     "موعد الطائرة في الثامنة",
+     "موعد اللقاء أمام الحديقة"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "الخطأ في «اسم الزمان من أمسى: مُمسٍ»:",
+    "options": [
+     "الصواب مُمسى على وزن اسم المفعول",
+     "لا خطأ",
+     "الصواب أمسية",
+     "الصواب مساء"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "الخطأ في «اسم الزمان من طلع: مَطلِع (قياسًا)»:",
+    "options": [
+     "الصواب مَطلَع لأن المضارع مضموم العين",
+     "الصواب طالع",
+     "الصواب مُطلَع",
+     "لا خطأ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "الخطأ في «اسم الزمان من وعد: مَوعَد»:",
+    "options": [
+     "الصواب مُوعَد",
+     "لا خطأ",
+     "الصواب واعد",
+     "الصواب مَوعِد لأن الفعل مثال صحيح الآخر"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "الخطأ في «اسم الزمان من انتهى: مُنتهٍ»:",
+    "options": [
+     "الصواب ناهٍ",
+     "الصواب نهاية",
+     "الصواب مُنتهى بفتح ما قبل الآخر",
+     "لا خطأ"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«مُصبَح القوم في الحقول» هل (مصبح) اسم زمان أم مكان؟",
+    "options": [
+     "اسم فاعل",
+     "زمان",
+     "مكان (لوجود في الحقول)",
+     "مصدر"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«مُصبَح القوم مع شروق الشمس» هل (مصبح) اسم زمان أم مكان؟",
+    "options": [
+     "مكان",
+     "مصدر",
+     "اسم فاعل",
+     "زمان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«ودّعنا الصيف وحلّ مشتى الأسرة» (مشتى):",
+    "options": [
+     "ظرف",
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«لكل أمة مولد ومنتهى» نوع (مولد) و(منتهى):",
+    "options": [
+     "اسما فاعل",
+     "اسما زمان",
+     "اسما مكان",
+     "مصدران"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«بلغ السيل الزبى، وحان منتهى الصبر» نوع (منتهى):",
+    "options": [
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«مستقبل الوطن بيد أبنائه» (مستقبل):",
+    "options": [
+     "اسم زمان",
+     "مصدر",
+     "اسم فاعل",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«انطلق المتسابقون عند مُنطلَق السباق في الثامنة» (منطلق):",
+    "options": [
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان",
+     "مصدر"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«تجمّع المتسابقون عند مُنطلَق السباق في الملعب» (منطلق):",
+    "options": [
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان",
+     "مصدر"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "الفرق بين اسم الزمان وظرف الزمان:",
+    "options": [
+     "الظرف مشتق دائمًا",
+     "اسم الزمان مشتق على أوزان معينة، والظرف اسم منصوب يدل على الزمن",
+     "اسم الزمان منصوب دائمًا",
+     "لا فرق"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«سافرتُ مَغربَ الشمس» إعراب (مغرب):",
+    "options": [
+     "فاعل",
+     "مبتدأ",
+     "ظرف زمان منصوب وهو اسم زمان مشتق",
+     "مفعول به"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«حان المغربُ» إعراب (المغرب):",
+    "options": [
+     "فاعل مرفوع وهو اسم زمان",
+     "مفعول به",
+     "ظرف منصوب",
+     "خبر"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ الطلاب صباحًا» (انصرف) اسم زمان:",
+    "options": [
+     "انصراف",
+     "منصرِف",
+     "منصرَف",
+     "صارف"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«........ الحجاج من منى يوم النحر» (نزل):",
+    "options": [
+     "منزِل",
+     "منزول",
+     "نزول",
+     "نازل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ القطار في العاشرة» (وصل):",
+    "options": [
+     "موصِل",
+     "موصول",
+     "واصل",
+     "وصول"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "لماذا (مَوصِل) على مَفعِل؟",
+    "options": [
+     "لأن الفعل مثال صحيح الآخر",
+     "لأنه مضموم العين",
+     "لأنه رباعي",
+     "لأنه ناقص"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ المصابيح عند الغروب» (أضاء):",
+    "options": [
+     "ضوء",
+     "مُضاء",
+     "مُضيء",
+     "إضاءة"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان المختلف: (موعد - مطلع - مغرب - مكتوب):",
+    "options": [
+     "مكتوب",
+     "مغرب",
+     "مطلع",
+     "موعد"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان المختلف: (ممسى - مصبح - منتهى - منتهٍ):",
+    "options": [
+     "ممسى",
+     "مصبح",
+     "منتهٍ",
+     "منتهى"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«زرتُه مُنصرَفَ الناس من الصلاة» نوع (منصرف):",
+    "options": [
+     "اسم مكان",
+     "اسم زمان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«المُنصرِف من الصلاة هادئ» نوع (المنصرف):",
+    "options": [
+     "مصدر",
+     "اسم فاعل",
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مرسى السفن في الميناء ومرساها عند الفجر» (مرسى) الأولى والثانية:",
+    "options": [
+     "مكان - زمان",
+     "زمان - زمان",
+     "مكان - مكان",
+     "زمان - مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«حين مجيء الربيع تزهر الأشجار» هل (مجيء) اسم زمان؟",
+    "options": [
+     "لا، مصدر",
+     "نعم",
+     "اسم مكان",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«حان مُلتقانا» (ملتقى) نوعه:",
+    "options": [
+     "اسم فاعل",
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«ملتقانا عند النيل» (ملتقى) نوعه:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم الزمان من (هبّ):",
+    "options": [
+     "هابّ",
+     "هبوب",
+     "مَهَبّ",
+     "مهبوب"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم الزمان من (فرّ):",
+    "options": [
+     "فارّ",
+     "مَفَرّ",
+     "مفرور",
+     "فرار"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«أين المفرّ؟» (المفرّ) هنا:",
+    "options": [
+     "مصدر",
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«ممسانا عند جدتي» (ممسى) نوعه:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«ممسانا في التاسعة» (ممسى) نوعه:",
+    "options": [
+     "اسم زمان",
+     "اسم فاعل",
+     "مصدر",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«........ العيد قريب» (أقبل) اسم زمان:",
+    "options": [
+     "مُقبِل",
+     "مُقبَل",
+     "قابل",
+     "إقبال"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«العيد مُقبِل» (مقبل) نوعه:",
+    "options": [
+     "مصدر",
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«انتظرتك حتى مُنتصَف النهار» اسم الزمان وفعله:",
+    "options": [
+     "النهار - نهر",
+     "انتظر - نظر",
+     "منتصف - أنصف",
+     "منتصف - انتصف"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«كل مجتهد له مستقبل مشرق» (مستقبل):",
+    "options": [
+     "اسم مفعول بمعنى الشيء",
+     "اسم مكان",
+     "اسم فاعل",
+     "اسم زمان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«مُختتَم الحفل في العاشرة» اسم الزمان وفعله:",
+    "options": [
+     "الحفل - حفل",
+     "مختتم - اختتم",
+     "العاشرة - عشر",
+     "مختتم - ختم"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مَوعِد الحصاد في الصيف» اسم الزمان ووزنه:",
+    "options": [
+     "موعد - مَفعِل",
+     "الصيف - فعل",
+     "الحصاد - فِعال",
+     "موعد - مَفعَل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«حان مُلتقى الفريقين في المباراة النهائية» اسم الزمان وفعله:",
+    "options": [
+     "ملتقى - التقى",
+     "المباراة - بارى",
+     "الفريقين - فرق",
+     "حان - حين"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«بدأ مَطلَع العام الدراسي» نوع (مطلع) ووزنه:",
+    "options": [
+     "اسم مكان - مَفعِل",
+     "اسم فاعل - فاعل",
+     "مصدر - فِعال",
+     "اسم زمان - مَفعَل"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«مُنصرَف الموظفين في الثالثة» اسم الزمان وفعله:",
+    "options": [
+     "الموظفين - وظّف",
+     "الثالثة - ثلث",
+     "منصرف - صرف",
+     "منصرف - انصرف"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«مُنصرَف الموظفين من الباب الخلفي» نوع (منصرف):",
+    "options": [
+     "اسم فاعل",
+     "مصدر",
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 3
+   },
+   {
+    "q": "«المسافر مُقلِع بعد ساعة» نوع (مقلع):",
+    "options": [
+     "اسم زمان",
+     "مصدر",
+     "اسم فاعل",
+     "اسم مكان"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«مُقلَع الطائرة بعد ساعة» نوع (مقلع):",
+    "options": [
+     "اسم زمان",
+     "اسم مكان",
+     "مصدر",
+     "اسم فاعل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مَعاد الطلاب إلى المدارس في سبتمبر» اسم الزمان وفعله:",
+    "options": [
+     "معاد - عاد",
+     "معاد - أعاد",
+     "الطلاب - طلب",
+     "المدارس - درس"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مُرتحَل القافلة عند الغروب» اسم الزمان وفعله:",
+    "options": [
+     "مرتحل - ارتحل",
+     "القافلة - قفل",
+     "مرتحل - رحل",
+     "الغروب - غرب"
+    ],
+    "ans": 0
+   }
+  ]
+ },
+ {
+  "id": "g5_bubbles",
+  "title": "الفقاعات المتساقطة: زمان أم مكان؟",
+  "type": "bubbles",
+  "desc": "حدد نوع الكلمة قبل أن تسقط الفقاعة",
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path><path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path></svg>",
+  "questions": [
+   {
+    "q": "«موعد الامتحان غدًا»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«موعد اللقاء أمام المسجد»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مطلع الفجر قريب»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مطلع الشمس من الشرق»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«ملتقانا يوم الجمعة»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«ملتقانا عند النيل»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«منامي في العاشرة»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«منامي في غرفتي»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مولده في رمضان»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مولده في أسوان»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«ممسانا بعد العشاء»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«ممسانا عند جدي»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مرسى السفينة فجرًا»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مرسى السفينة بالميناء»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مصيفنا في يوليو»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مصيفنا بالإسكندرية»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مغرب الشمس قريب»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«مبيت الحجاج بمنى»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "«مبيت الحجاج ليلة العيد»:",
+    "options": [
+     "اسم زمان",
+     "اسم مكان"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "«منتهى العام في ديسمبر»:",
+    "options": [
+     "اسم مكان",
+     "اسم زمان"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (وعد):",
+    "options": [
+     "موعود",
+     "موعِد",
+     "واعد"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (طلع):",
+    "options": [
+     "مطلوع",
+     "مطلَع",
+     "طالع"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (التقى):",
+    "options": [
+     "لاقٍ",
+     "ملتقى",
+     "لقاء"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (أمسى):",
+    "options": [
+     "مُمسى",
+     "مساء",
+     "مُمسٍ"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم زمان من (أصبح):",
+    "options": [
+     "صباح",
+     "مُصبَح",
+     "مُصبِح"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (انتهى):",
+    "options": [
+     "نهاية",
+     "منتهٍ",
+     "منتهى"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم زمان من (ولد):",
+    "options": [
+     "مولِد",
+     "والد",
+     "مولود"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم زمان من (نام):",
+    "options": [
+     "نوم",
+     "نائم",
+     "منام"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم زمان من (بدأ):",
+    "options": [
+     "بداية",
+     "مبدأ",
+     "بادئ"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (عاد):",
+    "options": [
+     "عائد",
+     "معاد",
+     "عودة"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "اسم زمان من (أقلع):",
+    "options": [
+     "مُقلِع",
+     "إقلاع",
+     "مُقلَع"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم زمان من (انطلق):",
+    "options": [
+     "منطلَق",
+     "انطلاق",
+     "منطلِق"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "وزن (مطلع):",
+    "options": [
+     "مَفعَل",
+     "مُفعَل",
+     "مَفعِل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "وزن (موعد):",
+    "options": [
+     "مَفعَل",
+     "مُفعَل",
+     "مَفعِل"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "وزن (منام):",
+    "options": [
+     "مَفعَل",
+     "مُفعَل",
+     "مَفعِل"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "وزن (مبيت):",
+    "options": [
+     "مُفعَل",
+     "مَفعِل",
+     "مَفعَل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "السؤال عن اسم الزمان:",
+    "options": [
+     "أين؟",
+     "متى؟",
+     "من؟"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "السؤال عن اسم المكان:",
+    "options": [
+     "أين؟",
+     "متى؟",
+     "من؟"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "التمييز بين الزمان والمكان:",
+    "options": [
+     "الوزن",
+     "السياق",
+     "الحروف"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "من غير الثلاثي على وزن:",
+    "options": [
+     "اسم المفعول",
+     "اسم الفاعل",
+     "فعّال"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم الزمان يدل على:",
+    "options": [
+     "فاعل الفعل",
+     "زمن الفعل",
+     "مكان الفعل"
+    ],
+    "ans": 1
+   },
+   {
+    "q": "ليس اسم زمان:",
+    "options": [
+     "مولود",
+     "موعد",
+     "مولد"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "ليس اسم زمان:",
+    "options": [
+     "مُصبِح",
+     "مُصبَح",
+     "مُمسى"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "ليس اسم زمان:",
+    "options": [
+     "ملتقى",
+     "منتهى",
+     "منتهٍ"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "ليس اسم زمان:",
+    "options": [
+     "غروب",
+     "مطلع",
+     "مغرب"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم زمان:",
+    "options": [
+     "مغرب",
+     "غروب",
+     "غارب"
+    ],
+    "ans": 0
+   },
+   {
+    "q": "اسم زمان:",
+    "options": [
+     "طالع",
+     "طلوع",
+     "مطلع"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "اسم زمان:",
+    "options": [
+     "مُقلِع",
+     "إقلاع",
+     "مُقلَع"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«حان ........ الصلاة»:",
+    "options": [
+     "وعد",
+     "واعد",
+     "موعد"
+    ],
+    "ans": 2
+   },
+   {
+    "q": "«اقترب ........ الشمس»:",
+    "options": [
+     "غروب",
+     "مغرب",
+     "غارب"
+    ],
+    "ans": 1
+   }
+  ]
+ }
+];
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) { audioCtx = new AudioContext(); }
+        if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.15, 0.15);
+        setTimeout(() => playTone(659.25, 'sine', 0.15, 0.15), 100);
+        setTimeout(() => playTone(783.99, 'sine', 0.25, 0.15), 200);
+        spawnConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(200, 'sawtooth', 0.3, 0.1);
+    }
+
+    function spawnConfetti() {
+        const colors = ['#22c55e', '#4ade80', '#10b981', '#ef4444', '#059669', '#4ade80'];
+        for (let i = 0; i < 25; i++) {
+            const conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، أحسنت!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300);
+    }
+
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let wrongAnswers = [];
+
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+                <span class="round-badge">🎲 ${Math.min(QUESTIONS_PER_ROUND, game.questions.length)} سؤالًا عشوائيًّا من ${game.questions.length}</span>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function sendResultToTeacher(score, total) {
+        const nameInput = document.getElementById('student-name-input');
+        const warning = document.getElementById('name-warning');
+        const name = nameInput.value.trim();
+        if (!name) {
+            warning.style.display = 'block';
+            nameInput.focus();
+            nameInput.classList.add('shake');
+            setTimeout(() => nameInput.classList.remove('shake'), 500);
+            return;
+        }
+        warning.style.display = 'none';
+        const message = "مرحبًا أستاذ محمد 🌟\n" +
+            "الطالب/ـة: " + name + "\n" +
+            "الدرس: " + LESSON_FULL_NAME + "\n" +
+            "اللعبة: " + currentGame.title + "\n" +
+            "النتيجة: " + score + " من " + total;
+        const url = "https://wa.me/" + TEACHER_WHATSAPP + "?text=" + encodeURIComponent(message);
+        window.open(url, '_blank');
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <div class="send-result-box">
+                    <h3>📤 أرسل نتيجتك للأستاذ محمد</h3>
+                    <input type="text" id="student-name-input" class="name-input" placeholder="اكتب اسمك هنا ✍️">
+                    <button class="btn whatsapp-send-btn" onclick="sendResultToTeacher(${score}, ${currentQuestions.length})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.656.843 5.12 2.26 7.15L.626 24l5.01-1.61c1.983 1.25 4.27 1.91 6.395 1.91 6.646 0 12.03-5.385 12.03-12.031S18.677 0 12.031 0zm6.544 17.202c-.273.766-1.58 1.464-2.185 1.503-.56.035-1.28.23-4.085-.86-3.39-1.32-5.59-4.78-5.736-4.97-.145-.19-1.37-1.82-1.37-3.475 0-1.655.857-2.47 1.164-2.8.307-.33.67-.413.89-.413.22 0 .44 0 .633.01.205.01.482-.08.736.53.264.634.904 2.203.984 2.366.08.163.133.353.033.553-.1.2-.153.326-.307.506-.154.18-.32.38-.453.506-.153.153-.314.316-.134.626.18.31.8 1.32 1.71 2.13.176.157.363.31.558.45 1.05.76 1.83 1.05 2.13 1.18.3.13.474.11.652-.09.18-.205.766-.893.97-1.2.204-.307.41-.256.69-.153.28.103 1.77.836 2.074.99.304.153.506.23.582.356.076.126.076.73-.197 1.496z"/></svg>
+                        إرسال النتيجة عبر واتساب
+                    </button>
+                    <p id="name-warning" class="name-warning" style="display:none;">من فضلك اكتب اسمك أولاً ✍️</p>
+                </div>
+                <button class="btn" style="font-size:1.2rem; padding:15px 30px; margin-top: 20px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    // اختيار 20 سؤالًا عشوائيًّا من بنك الأسئلة، مع تفضيل الأسئلة التي لم تظهر في المرة السابقة
+    function pickRound(gameData) {
+        const all = gameData.questions.map((q, i) => ({ q, i }));
+        const n = Math.min(QUESTIONS_PER_ROUND, all.length);
+        const key = LESSON_KEY + '-' + gameData.id;
+        let last = [];
+        try { last = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { last = []; }
+        const lastSet = new Set(last);
+        const fresh = shuffleArray(all.filter(x => !lastSet.has(x.i)));
+        const used = shuffleArray(all.filter(x => lastSet.has(x.i)));
+        const chosen = shuffleArray(fresh.concat(used).slice(0, n));
+        try { localStorage.setItem(key, JSON.stringify(chosen.map(x => x.i))); } catch (e) {}
+        return chosen.map(x => x.q);
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = pickRound(gameData);
+        qIndex = 0;
+        wrongAnswers = [];
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            /* سرعة سقوط أعلى قليلاً */
+            let speed = 0.55 + Math.random() * 0.45; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 20);
+    }
+
+    // 4. التنشين والاصطياد
+    function renderShooting(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+        const birds = [];
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+            birds.push({ el: bird, pos: pos, speed: speed });
+        });
+
+        animInterval = setInterval(() => {
+            if (isAnswered) { clearInterval(animInterval); return; }
+            const w = area.clientWidth || window.innerWidth;
+            birds.forEach(b => {
+                b.pos += b.speed;
+                if (b.pos > w + 50) b.pos = -250;
+                if (b.pos < -250) b.pos = w + 50;
+                b.el.style.left = b.pos + 'px';
+            });
+        }, 20);
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك!`;
+        container.appendChild(hint);
+    }
+
+    // 5. تحدي العباقرة (سباق مع الوقت)
+    function renderGenius(container) {
+        clearInterval(animInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box genius-box';
+        qBox.innerHTML = `⚡ ${qData.q}`;
+
+        const timerWrap = document.createElement('div');
+        timerWrap.className = 'genius-timer-wrap';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerWrap.appendChild(timerBar);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+
+        let isAnswered = false;
+        let timeLeft = 12000;
+        const totalTime = timeLeft;
+
+        function finish(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(animInterval);
+            if (isCorrect) {
+                showFeedback(true, () => { qIndex++; renderNextState(); });
+            } else {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText || "انتهى الوقت! ⏱️" });
+                showFeedback(false, () => { qIndex++; renderNextState(); });
+            }
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finish(true);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finish(false, opt);
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(timerWrap);
+        container.appendChild(btnContainer);
+
+        let hint = document.createElement('div');
+        hint.className = 'genius-hint';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> سباق مع الوقت! أجب بسرعة قبل نفاد الثواني`;
+        container.appendChild(hint);
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            timeLeft -= 100;
+            let pct = Math.max(0, (timeLeft / totalTime) * 100);
+            timerBar.style.width = pct + '%';
+            if (timeLeft <= 0) {
+                clearInterval(animInterval);
+                finish(false, null);
+            }
+        }, 100);
+    }
+
+    window.onload = initApp;
+</script>
+<script>
+// رابط جدول نتائج الأستاذ (Google Apps Script Web App)
+window.RESULTS_URL = "https://script.google.com/macros/s/AKfycbx9fAFKLHG3TnuwOoPGVz_AO6KPWi7oMw5vBfFK-CCY7XeNKq-FNerfQyeZ8sftFjRJ/exec";
+</script>
+<script>
+/* ===== اسم الطالب قبل اللعب + تسليم النتيجة تلقائيًا لجدول نتائج الأستاذ ===== */
+(function () {
+  var QKEY = '__pending_results_v1', NKEY = '__student_name_v1';
+  function url() { return (window.RESULTS_URL || '').trim(); }
+  function g(v) { try { return v(); } catch (e) { return undefined; } }
+  function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function loadQ() { try { return JSON.parse(lsGet(QKEY) || '[]'); } catch (e) { return []; } }
+  function saveQ(q) { lsSet(QKEY, JSON.stringify(q)); }
+  var studentName = norm(lsGet(NKEY) || '');
+
+  /* ---------- الإرسال مع الحفظ لو مفيش نت ---------- */
+  function post(item) {
+    return fetch(url(), { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
+  }
+  function flush() {
+    if (!url() || !navigator.onLine) return;
+    var q = loadQ(); if (!q.length) return;
+    var item = q[0];
+    post(item).then(function () { var r = loadQ().filter(function (x) { return x.id !== item.id; }); saveQ(r); if (r.length) flush(); }).catch(function () {});
+  }
+  window.addEventListener('online', flush);
+  window.addEventListener('load', function () { setTimeout(flush, 1500); });
+
+  /* ---------- الستايل ---------- */
+  var css = document.createElement('style');
+  css.textContent =
+    '#__nm-ov{position:fixed;inset:0;z-index:999990;background:rgba(15,23,42,.65);display:flex;align-items:center;justify-content:center;padding:18px;direction:rtl}' +
+    '#__nm-box{background:#fff;border-radius:22px;padding:26px 22px;width:100%;max-width:380px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.35);font-family:inherit}' +
+    '#__nm-box .ic{font-size:44px;line-height:1;margin-bottom:8px}' +
+    '#__nm-box h3{margin:0 0 14px;font-size:1.35rem;color:var(--primary,#15803d);font-weight:800}' +
+    '#__nm-in{width:100%;box-sizing:border-box;padding:13px 14px;border:2px solid #cbd5e1;border-radius:14px;font-size:1.15rem;text-align:center;font-family:inherit;outline:none}' +
+    '#__nm-in:focus{border-color:var(--primary,#16a34a)}' +
+    '#__nm-go{margin-top:14px;width:100%;border:0;border-radius:14px;padding:14px;font-size:1.15rem;font-weight:800;color:#fff;cursor:pointer;font-family:inherit;background:linear-gradient(to bottom,#22c55e,#16a34a);box-shadow:0 4px 0 #15803d}' +
+    '#__nm-err{color:#dc2626;font-weight:700;margin-top:8px;min-height:1.3em;font-size:.95rem}' +
+    '#__nm-badge{position:fixed;bottom:14px;right:14px;z-index:99990;background:#fff;border:2px solid #bbf7d0;color:#14532d;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.9rem;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.12);font-family:inherit;max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+    '.__res-status{margin-top:22px;padding:14px 16px;border-radius:16px;font-weight:800;font-size:1.1rem;line-height:1.7}' +
+    '.__rs-wait{background:#eff6ff;color:#1d4ed8;border:2px solid #bfdbfe}.__rs-ok{background:#ecfdf5;color:#15803d;border:2px solid #a7f3d0}' +
+    '.__rs-off{background:#fffbeb;color:#b45309;border:2px solid #fde68a}.__rs-bad{background:#fef2f2;color:#b91c1c;border:2px solid #fecaca}';
+  document.head.appendChild(css);
+
+  /* ---------- شاشة الاسم ---------- */
+  function askName(then) {
+    var old = document.getElementById('__nm-ov'); if (old) old.remove();
+    var ov = document.createElement('div'); ov.id = '__nm-ov';
+    ov.innerHTML = '<div id="__nm-box"><div class="ic">✍️</div><h3>اكتب اسمك</h3>' +
+      '<input id="__nm-in" type="text" autocomplete="name" maxlength="60">' +
+      '<button id="__nm-go">ابدأ</button><div id="__nm-err"></div></div>';
+    document.body.appendChild(ov);
+    var inp = document.getElementById('__nm-in');
+    inp.value = studentName;
+    setTimeout(function () { inp.focus(); }, 50);
+    function go() {
+      var v = norm(inp.value);
+      if (v.length < 2) { document.getElementById('__nm-err').textContent = 'من فضلك اكتب اسمك'; inp.focus(); return; }
+      studentName = v; lsSet(NKEY, v); ov.remove(); badge();
+      if (then) then();
+    }
+    document.getElementById('__nm-go').onclick = go;
+    inp.onkeydown = function (e) { if (e.key === 'Enter') go(); };
+  }
+  function badge() {
+    var b = document.getElementById('__nm-badge');
+    if (!studentName) { if (b) b.remove(); return; }
+    if (!b) { b = document.createElement('button'); b.id = '__nm-badge'; b.title = 'تغيير الاسم'; b.onclick = function () { askName(); }; document.body.appendChild(b); }
+    b.textContent = '👤 ' + studentName;
+  }
+
+  /* ---------- قبل أي لعبة: لازم الاسم ---------- */
+  var origStart = window.startGame;
+  if (typeof origStart === 'function') {
+    window.startGame = function (gameData) {
+      var self = this, args = arguments;
+      if (!studentName) { askName(function () { origStart.apply(self, args); }); return; }
+      return origStart.apply(self, args);
+    };
+  }
+
+  /* ---------- بعد آخر سؤال: تسليم تلقائي ---------- */
+  function setStatus(el, cls, html) { el.className = '__res-status ' + cls; el.innerHTML = html; }
+  var origComplete = window.gameComplete;
+  if (typeof origComplete === 'function') {
+    window.gameComplete = function () {
+      var ret = origComplete.apply(this, arguments);
+      try {
+        var gc = document.getElementById('game-container') || document.body;
+        var m = (gc.innerText || '').match(/نتيجتك\s*:\s*(\d+)\s*من\s*(\d+)/);
+        // إخفاء صندوق الإرسال القديم وإظهار حالة التسليم مكانه
+        var inp = document.getElementById('student-name-input');
+        var box = inp ? inp.parentElement : null;
+        var st = document.createElement('div');
+        if (box) box.replaceWith(st); else gc.appendChild(st);
+        if (!m) { setStatus(st, '__rs-bad', '⚠️ تعذر قراءة النتيجة'); return ret; }
+        var item = {
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+          name: studentName || 'بدون اسم',
+          lesson: norm(g(function () { return LESSON_FULL_NAME; }) || g(function () { return LESSON_TITLE; }) || g(function () { return LESSON_NAME; }) || document.title),
+          game: norm(g(function () { return currentGame.title; }) || ''),
+          score: +m[1], total: +m[2],
+          page: decodeURIComponent(location.pathname.split('/').slice(-3).join('/')),
+          clientTime: new Date().toISOString()
+        };
+        if (!url()) { setStatus(st, '__rs-bad', '⚠️ رابط استلام النتائج غير مضبوط'); return ret; }
+        var q = loadQ(); q.push(item); saveQ(q);
+        if (!navigator.onLine) { setStatus(st, '__rs-off', '📴 مفيش إنترنت — نتيجتك هتتسلم تلقائيًا أول ما النت يرجع'); return ret; }
+        setStatus(st, '__rs-wait', '⏳ جاري تسليم نتيجتك...');
+        post(item).then(function () {
+          saveQ(loadQ().filter(function (x) { return x.id !== item.id; }));
+          setStatus(st, '__rs-ok', '✅ تم تسليم نتيجتك<br><span style="font-weight:600;font-size:.95rem">' + item.name.replace(/[<>&]/g, '') + '</span>');
+        }).catch(function () {
+          setStatus(st, '__rs-off', '📴 النت ضعيف — نتيجتك هتتسلم تلقائيًا لما النت يرجع');
+        });
+      } catch (e) {}
+      return ret;
+    };
+  }
+
+  /* ---------- أول ما الصفحة تفتح ---------- */
+  function init() { askName(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+</script>
+</body>
+</html>
